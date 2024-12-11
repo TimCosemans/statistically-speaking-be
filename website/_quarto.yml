@@ -2,12 +2,34 @@ project:
   type: website
 
 website:
-  title: "website"
+  title: ''
+  search: true
   navbar:
     left:
       - href: index.qmd
         text: Home
-      - about.qmd
+      - href: projects.qmd
+        text: Projects
+      - href: research.qmd
+        text: Research
+      - href: presentations.qmd
+        text: Presentations
+    right: 
+      - href: blog.qmd
+        text: Blog
+      - href: contact.qmd
+        text: Contact
+
+  page-footer: 
+    left: "Copyright 2024, Tim Cosemans" 
+    right: 
+      - icon: github
+        href: https://github.com/TimCosemans
+      - icon: twitter 
+        href: https://twitter.com/timcosemans
+      - icon: linkedin
+        href: https://linkedin.com/in/timcosemans
+
 
 format:
   html:
