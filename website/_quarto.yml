@@ -7,35 +7,38 @@ website:
   navbar:
     left:
       - href: index.qmd
-        text: Home
-      - href: projects.qmd
+        text: About
+      - href: projects/projects.qmd
         text: Projects
       - href: research.qmd
-        text: Research
-      - href: presentations.qmd
-        text: Presentations
+        text: CV
     right: 
       - href: blog.qmd
         text: Blog
-      - href: contact.qmd
-        text: Contact
 
   page-footer: 
-    left: "Copyright 2024, Tim Cosemans" 
+    center: "Copyright 2025, Tim Cosemans"
+    left: "Based on code by [Andrew Heiss](https://github.com/andrewheiss/ath-quarto)" 
     right: 
       - icon: github
         href: https://github.com/TimCosemans
-      - icon: twitter 
-        href: https://twitter.com/timcosemans
       - icon: linkedin
         href: https://linkedin.com/in/timcosemans
 
 
 format:
   html:
-    theme: lux
-    css: styles.css
-    toc: true
+    theme: 
+      - theme.scss
+    grid: 
+      body-width: 900px
+    toc: false
+    code-link: true
+    anchor-sections: true
+    fig-cap-location: margin
+    reference-location: margin
+    footnotes-hover: true
+    highlight-style: monokai
 
 
 
