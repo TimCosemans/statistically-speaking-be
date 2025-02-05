@@ -1,44 +1,43 @@
 project:
   type: website
+  output-dir: docs
 
 website:
-  title: ''
-  search: true
-  navbar:
-    left:
-      - href: index.qmd
-        text: About
-      - href: projects/projects.qmd
-        text: Projects
-      - href: research.qmd
-        text: CV
-    right: 
-      - href: blog.qmd
-        text: Blog
+  page-navigation: true
+  title: "Hello :)"
 
-  page-footer: 
-    center: "Copyright 2025, Tim Cosemans"
-    left: "Based on code by [Andrew Heiss](https://github.com/andrewheiss/ath-quarto)" 
-    right: 
-      - icon: github
-        href: https://github.com/TimCosemans
-      - icon: linkedin
-        href: https://linkedin.com/in/timcosemans
+  page-footer:
+    left: "&copy; Copyright 2022, Author"
+    right: "This page is built with ❤️ and [Quarto](https://quarto.org/)."
+
+  sidebar:
+    pinned: true
+    align: center
+    style: "docked"
+    collapse-level: 1
+    contents:
+
+      - text: "Projects"
+        href: projects/index.qmd
+
+      - text: "Talks"
+        href: talks/index.qmd
+
+      - text: "Blog"
+        href: blog.qmd
+
+      - section: "About"
+        contents:
+          - text: "About me"
+            href: about.qmd
+          - text: "This template"
+            href: about_template.qmd
 
 
 format:
   html:
-    theme: 
-      - theme.scss
-    grid: 
-      body-width: 900px
-    toc: false
-    code-link: true
-    anchor-sections: true
-    fig-cap-location: margin
-    reference-location: margin
-    footnotes-hover: true
-    highlight-style: monokai
-
+    theme: cosmo
+    css: styles.css
+    toc: true
 
 

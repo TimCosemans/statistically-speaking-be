@@ -1,8 +1,0 @@
----
-title: "Projects"
-listing:
-  - id: projects
-    contents: projects.yml
-    sort: "date desc"
-    template: template.ejs
----
