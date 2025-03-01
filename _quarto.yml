@@ -1,6 +1,9 @@
 project:
   type: website
 
+execute:
+  freeze: auto
+
 website:
   title: "Tim Cosemans"
   description: "Tim is a data scientist working at the intersection of AI, business and education."
