@@ -1,13 +1,16 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-GB" xml:lang="en-GB"><head>
 
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.6.39">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Tim Cosemans">
+<meta name="dcterms.date" content="2024-12-11">
+<meta name="description" content="How data marketing has become more complicated than ever.">
 
-<title>Tim Cosemans</title>
+<title>The struggles of a data marketer – Tim Cosemans</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,28 +23,45 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-40189b060daf0e9ff397cdccf253b13f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
-<link href="site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
-<link href="site_libs/quarto-contrib/academicons-1.9.2/all.css" rel="stylesheet">
-<link href="site_libs/quarto-contrib/academicons-1.9.2/size.css" rel="stylesheet">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-7a0e0865ba4518cfcdfdbb4d0694b3f8.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -80,7 +100,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Tim Cosemans</span>
     </a>
   </div>
@@ -91,15 +111,15 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link" href="../../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./cv/index.html"> 
+    <a class="nav-link" href="../../cv/index.html"> 
 <span class="menu-text">CV</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./blog/index.html"> 
+    <a class="nav-link" href="../../blog/index.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
 </ul>
@@ -113,56 +133,92 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-  <ul>
-  <li><a href="#bio" id="toc-bio" class="nav-link active" data-scroll-target="#bio">Bio</a></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
-<div class="quarto-about-trestles">
-  <div class="about-entity">
-    <img src="img/profile.jpeg" class="about-image
-  rounded " style="width: 20em;">
+<main class="content page-columns page-full" id="quarto-document-content">
+
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Tim Cosemans</h1>
+<h1 class="title">The struggles of a data marketer</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">data strategy</div>
+    <div class="quarto-category">data science</div>
+    <div class="quarto-category">marketing analytics</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    How data marketing has become more complicated than ever.
+  </div>
 </div>
+
+
 <div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Tim Cosemans <a href="mailto:tim@statisticallyspeaking.be" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> </p>
+          </div>
   </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">11 December 2024</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
 </header>
-    <div class="about-links">
-  <a href="https://www.linkedin.com/in/timcosemans/" class="about-link" rel="" target="">
-    <i class="bi bi-linkedin"></i>
-     <span class="about-link-text">LinkedIn</span>
-  </a>
-  <a href="https://github.com/TimCosemans" class="about-link" rel="" target="">
-    <i class="bi bi-github"></i>
-     <span class="about-link-text">Github</span>
-  </a>
-  <a href="mailto:tim@statisticallyspeaking.be" class="about-link" rel="" target="">
-     <span class="about-link-text"><i class="fa-solid fa-envelope" aria-label="envelope"></i> Email</span>
-  </a>
-  <a href="https://scholar.google.be/citations?user=xLqijZwAAAAJ&amp;hl=nl&amp;oi=ao" class="about-link" rel="" target="">
-     <span class="about-link-text"><i class="ai  ai-google-scholar"></i> Google Scholar</span>
-  </a>
+
+
+<p>Marketing is traditionally associated with advertising but is so much more than deciding on which ads to present to your customers. As a marketer, you’re expected to help shape your company’s value proposition, communicate it to your customers and manage their acquisition, development, and churn. Yet this process is not without its problems: Your customers might leave your company; you might face high shopping cart abandonment or have to deal with low conversion rates. As a marketer you will most likely turn to your data to see what is going on. And evidence suggests you should: Reports from McKinsey show that data-driven sales can increase EBITDA by 15 to 25 percent <span class="citation" data-cites="boringer">(<a href="#ref-boringer" role="doc-biblioref">Böringer et al. 2022</a>)</span>.</p>
+<div class="no-row-height column-margin column-container"><div id="ref-boringer" class="csl-entry" role="listitem">
+Böringer, J., A. Dierks, I. Huber, and D. Spillecke. 2022. <span>‘Insights to Impact: Creating and Sustaining Data-Driven Commercial Growth.’</span> McKinsey &amp; Company. <a href="ttps://www.mckinsey.com/capabilities/growth-marketing-and-sales/our-insights/insights-to-impact-creating-and-sustaining-data-driven-commercial-growth">ttps://www.mckinsey.com/capabilities/growth-marketing-and-sales/our-insights/insights-to-impact-creating-and-sustaining-data-driven-commercial-growth</a>.
+</div></div><p>Yet your data analysis process can take too long. You have to start from scratch collecting data each time or your analysis methods cannot seem to uncover what is truly happening among your customers. A recent study by the Chief Marketing Officer Council (2022) in partnership with GfK, one of the world’s largest marketing research organisations, shows you are not alone:</p>
+<div class="page-columns page-full"><blockquote class="blockquote">
+<p>“80% Of marketers say data, analytics and insights are very important to winning and retaining customers. Yet nearly two-thirds of those marketers are only moderately confident (or worse) in their data, analytics, and insights systems.” <span class="citation" data-cites="cmocouncil">(<a href="#ref-cmocouncil" role="doc-biblioref">Council 2022</a>)</span></p>
+</blockquote><div class="no-row-height column-margin column-container"></div></div>
+<p>Data marketing relies on access to all relevant data in order to find answers to business questions. Data access comes with its own barriers however (Figure 1). Often marketeers find themselves unable to integrate all data due to insufficient tools or technology. The files coming from your company database might not be compatible with your preferred analytics software or they might be too large to handle on your personal computer. Moving all your data to a cloud provider, such as Microsoft, Google or Amazon can be a great help in such cases. In choosing such a provider, it is important to consider what needs you need fulfilled. Want to make nice looking dashboards in PowerBI? Microsoft Azure might be the way to go. Want to easily access your data from Google Analytics? Think about Google Cloud Platform as your provider.</p>
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><img src="data_barriers.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 1: Main barriers to data access <span class="citation" data-cites="cmocouncil">(<a href="#ref-cmocouncil" role="doc-biblioref">Council 2022</a>)</span></figcaption>
+<div class="no-row-height column-margin column-container"></div></figure>
 </div>
-  </div>
-  <div class="about-contents"><main class="content" id="quarto-document-content">
-
-<section id="bio" class="level2">
-<h2 data-anchor-id="bio">Bio</h2>
-<p>I love uncovering the stories hidden in data. By combining analytical techniques with behavioral data, I aim to understand why people make the choices they do and how those patterns shape the world around us.</p>
-<p>Whether it’s predicting student drop-out, optimizing marketing strategies, or exploring decision-making in organizations, I enjoy bridging the gap between numbers and real-life behavior. For me, data isn’t just about models and algorithms—it’s a way to gain deeper insights into human nature.</p>
-<p>Beyond my technical work, I’m passionate about sharing knowledge, whether through teaching, mentoring, or collaborating with stakeholders to make AI and data science more accessible and ethical. At the end of the day, my goal is to use data not just for predictions, but to better understand and improve the way we interact, learn, and grow.</p>
-
-
-</section>
-</main></div>
+<p>Making such a decision is however not easy, and your company’s situation might have other requirements. In addition, lack of proper data management processes and scattered data control make it even harder for marketers to gather all their data in one place. Before you make cloud decisions, it is therefore always a good idea to conduct an analytical maturity assessment. What data does your company have? Where is it situated? How do you plan on using it? And what should the results look like?</p>
+<div class="page-columns page-full"><blockquote class="blockquote">
+<p>“81% Of marketers say hiring more talent with AI skills is the most critical need to developing their AI capabilities. Yet hiring more talent is also their biggest AI-related challenge.” <span class="citation" data-cites="cmocouncil">(<a href="#ref-cmocouncil" role="doc-biblioref">Council 2022</a>)</span></p>
+</blockquote><div class="no-row-height column-margin column-container"></div></div>
+<p>The customer journey has become more digitalised throughout the years: Customers do their research online before even meeting a salesperson. These buyer intent signals are critical in understanding the customer’s decision process and its critical moments.</p>
+<p>Buyer intent signals can come from multiple sources, including your website, social media, or internal CRM systems. True competitive advantage comes from generating real-time insights, identifying sudden shifts in these signals, and swiftly adapting and acting on them. This can mean searching for and addressing bottle necks in your customer’s journey or adapting your messages to your customers. At Algorhythm we addressed low engagement among customers of a large pharmaceutical player by building models that provide customer level recommendations on which channels to use, frequency to interact, and content to communicate, for example.</p>
+<p>As the noise across all of these channels grows louder, data marketers have to work even harder to find, extract and analyse relevant signals and produce actionable insights all while keeping the limited time span of the customer’s interactions with the company in mind. Data marketers therefore need the capabilities to detect opportunities and decide on the next best action while the customer is still engaged with the organisation. The banking sector, for example, often struggles with preventing customer churn. For our client, a large Belgian bank, we built a model to predict not only the propensity of churn but also the best possible offer to address each client with.</p>
+<p>AI has disrupted the standard toolkit of the data marketeer but also given us new tools to uncover even the most well-hidden patterns. The same study by GfK (Figure 2) shows that capabilities like predictive and prescriptive analytics or sentiment analysis are however still out of most marketers’ reach. The abundance of technologies and methods might be overwhelming, but all serve their individual purposes. It is therefore important to ask yourself the right questions before getting started with any of them. Do you want to know which customers will churn within a given time frame? Then you might want to focus on predictive analytics. But do you want to know what type of campaigns you should run in order to attract new customers? Then prescriptive analytics is probably more suited for your purposes. Even scraping online sources to reveal customer sentiment about your newly launched products or ad campaigns before they are reflected in the company’s financials is no longer out of reach with AI.</p>
+<div class="page-columns page-full"><blockquote class="blockquote">
+<p>“The challenge is choosing the right solution from a sea of options.” <span class="citation" data-cites="cmocouncil">(<a href="#ref-cmocouncil" role="doc-biblioref">Council 2022</a>)</span></p>
+</blockquote><div class="no-row-height column-margin column-container"></div></div>
+<p>The struggles of a data marketer are real. And as data becomes more ubiquitous and AI more pervasive, they are not likely to become any less prevalent.</p>
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><img src="data_challenges.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 2: Data capabilities still out of reach for marketers <span class="citation" data-cites="cmocouncil">(<a href="#ref-cmocouncil" role="doc-biblioref">Council 2022</a>)</span></figcaption>
+<div class="no-row-height column-margin column-container"><div id="ref-cmocouncil" class="csl-entry" role="listitem">
+Council, CMO. 2022. <span>‘The High-Velocity Data Marketer’</span>. CMOcouncil.org. <a href="https://www.cmocouncil.org/thought-leadership/reports/the-high-velocity-data-marketer">https://www.cmocouncil.org/thought-leadership/reports/the-high-velocity-data-marketer</a>.
+</div></div></figure>
 </div>
- <!-- /main -->
+
+
+
+
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -183,6 +239,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
   toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
   const isCodeAnnotation = (el) => {
     for (const clz of el.classList) {
       if (clz.startsWith('code-annotation-')) {                     

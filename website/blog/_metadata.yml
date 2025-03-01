@@ -1,8 +1,18 @@
-# options specified here will apply to all posts in this folder
-
-# freeze computational output
-# (see https://quarto.org/docs/projects/code-execution.html#freeze)
-freeze: true
-
-# Enable banner style title blocks
-title-block-banner: true
+author:
+  - id: cvc
+    number: 1
+    name:
+      given: Tim
+      family: Cosemans
+      literal: Tim Cosemans
+    email: tim@statisticallyspeaking.be
+format:
+  html:
+    df-print: paged
+    toc: true
+    lang: en-GB
+    code-overflow: wrap
+    mermaid:
+      theme: neutral
+reference-location: margin
+citation-location: margin

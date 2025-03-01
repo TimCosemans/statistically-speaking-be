@@ -1,43 +1,30 @@
 project:
   type: website
-  output-dir: docs
 
 website:
-  page-navigation: true
-  title: "Hello :)"
-
+  title: "Tim Cosemans"
+  description: "Tim is a data scientist working at the intersection of AI, business and education."
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - href: cv/index.qmd
+        text: CV
+      - href: blog/index.qmd
+        text: Blog
   page-footer:
-    left: "&copy; Copyright 2022, Author"
-    right: "This page is built with ❤️ and [Quarto](https://quarto.org/)."
-
-  sidebar:
-    pinned: true
-    align: center
-    style: "docked"
-    collapse-level: 1
-    contents:
-
-      - text: "Projects"
-        href: projects/index.qmd
-
-      - text: "Talks"
-        href: talks/index.qmd
-
-      - text: "Blog"
-        href: blog.qmd
-
-      - section: "About"
-        contents:
-          - text: "About me"
-            href: about.qmd
-          - text: "This template"
-            href: about_template.qmd
-
+    left: "(c) Tim Cosemans, 2025 – [Disclaimer](disclaimer)"
 
 format:
   html:
-    theme: cosmo
-    css: styles.css
+    theme:
+      - cosmo
     toc: true
+    toc_depth: 3
+    toc_float: true
+    toc_smooth_scroll: true
+    toc_highlight: true
+    fig-align: center
+
 
 
