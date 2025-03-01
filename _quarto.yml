@@ -16,7 +16,7 @@ website:
       - href: blog/index.qmd
         text: Blog
   page-footer:
-    left: "(c) Tim Cosemans, 2025 – [Disclaimer](disclaimer)"
+    left: "(c) Tim Cosemans, 2025 - [Disclaimer](disclaimer) - Based on chrisvoncsefalvay.com"
 
 format:
   html:
