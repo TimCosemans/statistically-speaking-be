@@ -2,7 +2,8 @@
   {
     "listing": "/blog/index.html",
     "items": [
-      "/blog/struggles_data_marketeer/index.html"
+      "/blog/struggles_data_marketeer/index.html",
+      "/blog/explainable_cnns/index.html"
     ]
   }
 ]

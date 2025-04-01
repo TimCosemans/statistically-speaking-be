@@ -4,7 +4,7 @@ categories:
   - data strategy
   - data science
   - marketing analytics
-date: 2024-12-11
+date: 2023-02-07
 description: How data marketing has become more complicated than ever.
 image: header.webp
 title: The struggles of a data marketer
