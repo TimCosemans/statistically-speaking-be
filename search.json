@@ -4,7 +4,49 @@
     "href": "blog/index.html",
     "title": "Blog",
     "section": "",
-    "text": "The struggles of a data marketer\n\n\n\n\n\n\ndata strategy\n\n\ndata science\n\n\nmarketing analytics\n\n\n\nHow data marketing has become more complicated than ever.\n\n\n\n\n\n11 Dec 2024\n\n\nTim Cosemans\n\n\n\n\n\n\nNo matching items"
+    "text": "The struggles of a data marketer\n\n\n\n\n\n\ndata strategy\n\n\ndata science\n\n\nmarketing analytics\n\n\n\nHow data marketing has become more complicated than ever.\n\n\n\n\n\n7 Feb 2023\n\n\nTim Cosemans\n\n\n\n\n\n\n\n\n\n\n\n\nExplainable convolutional neural networks for time series classification\n\n\n\n\n\n\nexplainable ai\n\n\ndata science\n\n\nneural networks\n\n\n\nUsing class activation maps to uncover which countries win olympic medals.\n\n\n\n\n\n7 Jun 2022\n\n\nTim Cosemans\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "blog/explainable_cnns/index.html",
+    "href": "blog/explainable_cnns/index.html",
+    "title": "Explainable convolutional neural networks for time series classification",
+    "section": "",
+    "text": "Data science is a rapidly evolving field. Daily, academics at universities work on the next big algorithm that will help make our lives easier. Large corporations, such as Microsoft and Amazon, have even made in-house research part of their competitive advantage by founding their own institutes covering research in areas ranging from economics and health to human-computer interaction and machine learning. Meta, previously Facebook, recently opened up access to a 175-billion-parameter language model that can be used for answering reading comprehension questions or generating new text. And Google is handing out grants of up to $100,000 to help battle climate change in a data-driven way.\nIt comes as no surprise that new machine learning research is therefore published at an increasingly faster rate. ArXiv, a popular public repository for research papers, even registered about 100 machine learning papers being published each day in 2018 (Figure 1). Looking at the exponential growth below, that should be plenty more in 2022.\nWhile not all research is directly applicable to an industry context and techniques are not always mature enough to warrant implementation, impactful papers appear almost daily. It’s up to us, the data scientists, to track them down.\nIn this article, we discuss one of those papers that recently caught our attention. In what follows, we take you along our journey of better understanding how the algorithm works, how to implement it and what it teaches us. More specifically, this article implements the ResNet, a type of convolutional neural network, and applies it to predicting which countries won a medal at the 2022 Winter Olympics. We achieve good performance and, using explainable AI tools, are able to pinpoint why exactly our model performs the way it does."
+  },
+  {
+    "objectID": "blog/explainable_cnns/index.html#the-residual-network",
+    "href": "blog/explainable_cnns/index.html#the-residual-network",
+    "title": "Explainable convolutional neural networks for time series classification",
+    "section": "The Residual Network",
+    "text": "The Residual Network\nThe residual network (ResNet) is a special type of CNN that differs in its architecture (or sequence of layers; Figure 3). While we have done our research on the latter, the ResNet requires special attention as it contains some modifications. More specifically, a residual network Wang, Yan, and Oates (2017) contains three blocks of each three convolutional layers (Figure 3). The first block contains three layers of 64 filters, the last two blocks contain 128 filters per layer. After each block of three convolutional layers, the input to that block (i.e., the raw data or the output of the previous block) is added to the output of the third layer, using a so-called ‘shortcut connection’. In addition, after each convolutional layer, batch normalisation is executed. In the last convolutional layer of each block, the input from the shortcut connection is also batch normalised independently before being added. Lastly, after each layer, each of the elements is subjected to a ReLU activation function before being passed on to the next layer.\n\nWang, Zhiguang, Weizhong Yan, and Tim Oates. 2017. ‘Time Series Classification from Scratch with Deep Neural Networks: A Strong Baseline’. In 2017 International Joint Conference on Neural Networks (IJCNN), 1578–85. IEEE.\n\n\n\nFigure 3: Architecture of a Residual Network\n\n\nAfter three blocks of convolutional layers, the output of the third block is put through a global average pooling (GAP) layer: Each time series is averaged and can now be represented by a single node. In a final stage, each of these nodes is fully connected to the output layer, i.e., the nodes with the class indication. A sigmoid activation function allows for the prediction of a probability for belonging to each of the classes."
+  },
+  {
+    "objectID": "blog/explainable_cnns/index.html#what-it-means-explaining-the-previous-paragraph",
+    "href": "blog/explainable_cnns/index.html#what-it-means-explaining-the-previous-paragraph",
+    "title": "Explainable convolutional neural networks for time series classification",
+    "section": "What it means: Explaining the previous paragraph",
+    "text": "What it means: Explaining the previous paragraph\nThe discussion above was very technical and still does not give us much insight into the power of the ResNet. The model we chose, based on the results from the training set, will only classify a country as a medal winner if the predicted probability it wins one is larger than 54%. To present an unbiased estimate of this model’s performance, we calculate some statistics on the test set. Our model achieves an overall precision of about 85% and a recall of about 87%. This means that 85% of all predicted medal winners will actually win one and we correctly predict 87% of all true medal winners. Given that our model only uses GDP data (ending three years before the 2022 Olympic Winter Games), this is a rather good performance!\nYet you might be wondering how we can achieve such good performance with the data at hand. As with many deep learning models, our model remains a black box. To find out what features of the time series add to its prediction, we can use a class activation map. This tool allows us to determine the importance of each temporal element for the classification of the time series. Our class activation map (Figure 6) shows the importance of the GDP in each year for the probability of that country being a medal winner. It shows that especially periods of high growth contribute to a higher probability of winning a medal at the 2022 Winter Olympics. Intuitively this makes sense: Wealthier countries have more funds to invest in the development of athletic capabilities and are therefore more likely to win a medal.\n\n\n\nFigure 6: Class activation map for the test set (high values are indicated by a deep red, low values by a deep blue)"
+  },
+  {
+    "objectID": "disclaimer/index.html",
+    "href": "disclaimer/index.html",
+    "title": "Tim Cosemans",
+    "section": "",
+    "text": "Opinions expressed on this Site are the author’s own in his personal capacity. They do not reflect the views of the current employer or of any organisation, company or board he is associated with."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Tim Cosemans",
+    "section": "",
+    "text": "I love uncovering the stories hidden in data. By combining analytical techniques with behavioral data, I aim to understand why people make the choices they do and how those patterns shape the world around us.\nWhether it’s predicting student drop-out, optimizing marketing strategies, or exploring decision-making in organizations, I enjoy bridging the gap between numbers and real-life behavior. For me, data isn’t just about models and algorithms—it’s a way to gain deeper insights into human nature.\nBeyond my technical work, I’m passionate about sharing knowledge, whether through teaching, mentoring, or collaborating with stakeholders to make AI and data science more accessible and ethical. At the end of the day, my goal is to use data not just for predictions, but to better understand and improve the way we interact, learn, and grow."
+  },
+  {
+    "objectID": "index.html#bio",
+    "href": "index.html#bio",
+    "title": "Tim Cosemans",
+    "section": "",
+    "text": "I love uncovering the stories hidden in data. By combining analytical techniques with behavioral data, I aim to understand why people make the choices they do and how those patterns shape the world around us.\nWhether it’s predicting student drop-out, optimizing marketing strategies, or exploring decision-making in organizations, I enjoy bridging the gap between numbers and real-life behavior. For me, data isn’t just about models and algorithms—it’s a way to gain deeper insights into human nature.\nBeyond my technical work, I’m passionate about sharing knowledge, whether through teaching, mentoring, or collaborating with stakeholders to make AI and data science more accessible and ethical. At the end of the day, my goal is to use data not just for predictions, but to better understand and improve the way we interact, learn, and grow."
   },
   {
     "objectID": "cv/index.html",
@@ -61,27 +103,6 @@
     "title": "Curriculum Vitae",
     "section": "Public Speaking & Talks",
     "text": "Public Speaking & Talks\n\nTrefdag Vlaanderen Digitaal (2024): AI in education & student performance.\nStudiedag AI Digitaal Vlaanderen (2024): Ethical AI in education.\nStudiedag AI Kenniscentrum Digisprong (2024): Critical AI perspectives in education.\nBusiness Club AI Voka (2023): Data-driven marketing analytics.\nData Science Meetup Leuven (2020): Exploratory factor analysis for binary data."
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Tim Cosemans",
-    "section": "",
-    "text": "I love uncovering the stories hidden in data. By combining analytical techniques with behavioral data, I aim to understand why people make the choices they do and how those patterns shape the world around us.\nWhether it’s predicting student drop-out, optimizing marketing strategies, or exploring decision-making in organizations, I enjoy bridging the gap between numbers and real-life behavior. For me, data isn’t just about models and algorithms—it’s a way to gain deeper insights into human nature.\nBeyond my technical work, I’m passionate about sharing knowledge, whether through teaching, mentoring, or collaborating with stakeholders to make AI and data science more accessible and ethical. At the end of the day, my goal is to use data not just for predictions, but to better understand and improve the way we interact, learn, and grow."
-  },
-  {
-    "objectID": "index.html#bio",
-    "href": "index.html#bio",
-    "title": "Tim Cosemans",
-    "section": "",
-    "text": "I love uncovering the stories hidden in data. By combining analytical techniques with behavioral data, I aim to understand why people make the choices they do and how those patterns shape the world around us.\nWhether it’s predicting student drop-out, optimizing marketing strategies, or exploring decision-making in organizations, I enjoy bridging the gap between numbers and real-life behavior. For me, data isn’t just about models and algorithms—it’s a way to gain deeper insights into human nature.\nBeyond my technical work, I’m passionate about sharing knowledge, whether through teaching, mentoring, or collaborating with stakeholders to make AI and data science more accessible and ethical. At the end of the day, my goal is to use data not just for predictions, but to better understand and improve the way we interact, learn, and grow."
-  },
-  {
-    "objectID": "disclaimer/index.html",
-    "href": "disclaimer/index.html",
-    "title": "Tim Cosemans",
-    "section": "",
-    "text": "Opinions expressed on this Site are the author’s own in his personal capacity. They do not reflect the views of the current employer or of any organisation, company or board he is associated with."
   },
   {
     "objectID": "blog/struggles_data_marketeer/index.html",
