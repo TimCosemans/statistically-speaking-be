@@ -1,13 +1,14 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-GB" xml:lang="en-GB"><head>
 
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.6.43">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Tim Cosemans">
 
-<title>index – Tim Cosemans</title>
+<title>panel_data_note – Tim Cosemans</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -38,7 +39,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-d4d76bf8491c20bad77d141916dc28e1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-8647a4a42273f773479d27c00df3f9ed.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-e5bd5842818420112f2a87434b228a32.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -67,6 +68,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -110,18 +140,111 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#a-note-on-panel-data-methods" id="toc-a-note-on-panel-data-methods" class="nav-link active" data-scroll-target="#a-note-on-panel-data-methods">A Note on Panel Data Methods</a>
+  <ul class="collapse">
+  <li><a href="#defining-panel-data" id="toc-defining-panel-data" class="nav-link" data-scroll-target="#defining-panel-data">Defining Panel Data</a></li>
+  <li><a href="#analyzing-panel-data" id="toc-analyzing-panel-data" class="nav-link" data-scroll-target="#analyzing-panel-data">Analyzing Panel Data</a></li>
+  <li><a href="#final-note" id="toc-final-note" class="nav-link" data-scroll-target="#final-note">Final Note</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+</div>
 
 
 
+<div class="quarto-title-meta">
 
-<p>Opinions expressed on this Site are the author’s own in his personal capacity. They do not reflect the views of the current employer or of any organisation, company or board he is associated with.</p>
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Tim Cosemans <a href="mailto:tim@statisticallyspeaking.be" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
 
 
+</header>
+
+
+<section id="a-note-on-panel-data-methods" class="level1">
+<h1>A Note on Panel Data Methods</h1>
+<section id="defining-panel-data" class="level2">
+<h2 class="anchored" data-anchor-id="defining-panel-data">Defining Panel Data</h2>
+<p>Panel, or longitudinal data has become widely available to empirical researchers across economics. Many countries conduct national periodic surveys, such as the British Household Panel Survey or the National Longitudinal Survey in the United States. In addition, commercial organizations offer a wide array of longitudinal datasets for research, such as Nielsen’s Consumer Panel. The units of analysis, individuals, firms etc., are not only observed on different variables (like in cross-sectional data), but also over time. Key to this type of data is the fact that the observations, i.e., the individual data points, are no longer independent since they belong to the same unit of analysis. The most outspoken benefit of this type of data lies in this within-unit variance, that brings extra information in addition to the traditional between-unit variance observed in cross-sectional data (Capitaine, Genuer &amp; Thiébaut, 2021).</p>
+<p>Panel or longitudinal data is therefore a special case of clustered data, where data points belong to a cluster that causes a correlation between them. A different type of clustered data is hierarchical data where data points are connected not because they belong to the same unit of analysis, but because the unit of analysis belongs to some overarching group. For example, test scores of students have a hierarchical dimension since the unit of analysis, the student, belongs to a group, a class. All grades from students of the same class can be expected to show some correlation due to characteristics of the class, such as the teacher, the class size etc.</p>
+</section>
+<section id="analyzing-panel-data" class="level2">
+<h2 class="anchored" data-anchor-id="analyzing-panel-data">Analyzing Panel Data</h2>
+<p>Both econometrics and statistics have a large array of methods to analyze panel data, but the terminology used to denote them can often be conflicting and confusing (Gelman, 2005). In general, we can define a longitudinal model with individual specific intercepts as follows:</p>
+<pre class="math"><code>Y_{it} = f(X_{it}) + c_i + e_{it}</code></pre>
+<p>where:</p>
+<ul>
+<li><span class="math inline">\(f(X_{it})\)</span> is an unknown function<br>
+</li>
+<li><span class="math inline">\(Y_{it}\)</span> represents the outcome<br>
+</li>
+<li><span class="math inline">\(e_{it}\)</span> is a standard normally distributed error<br>
+</li>
+<li><span class="math inline">\(c_i\)</span> is an unobserved, time-constant factor specific to individual <em>i</em></li>
+</ul>
+<p>In econometrics, this model is called the unobserved effects model (Wooldridge, 2010). There, the discussion usually centers around whether ci must be treated as a random variable (i.e., a random effect) or a parameter to be estimated (i.e., a fixed effect).</p>
+<p>Over time:</p>
+<ul>
+<li>“Random effects” has become synonymous with zero correlation between <span class="math inline">\(c_i\)</span> and <span class="math inline">\(X_i\)</span><br>
+</li>
+<li>“Fixed effects” implies correlation between <span class="math inline">\(c_i\)</span> and <span class="math inline">\(X_i\)</span></li>
+</ul>
+<p>In statistics, on the other hand, a fixed effect is a common term used to refer to any parameter in a regression model that is a population average to be estimated, usually denoted by <span class="math inline">\(\beta\)</span> (StackExchange, 2012b).</p>
+<p>Estimation under the assumption of non-zero correlation in econometrics (“fixed effects estimation”) is more realistic, but requires the removal of the influence of <span class="math inline">\(c_i\)</span>. This can be done using the “within” transformation of the equation to be estimated, which is equivalent to estimating with OLS</p>
+<pre class="math"><code>Y_{it} - Ȳ_i = f(X_{it} - X̄_i) + e_{it} - ē_i</code></pre>
+<p>While this approach successfully removes the influence of <span class="math inline">\(c_i\)</span>, it also removes all time-constant variables. The main downside of this approach is that other time-constant variables cannot be included. Estimation under the assumption of no correlation (“random effects estimation”), does allow for the inclusion of time-constant variables, but is often less realistic. This involves estimating</p>
+<pre class="math"><code>Y_{it} = f(X_{it}) + v_{it}</code></pre>
+<p>where <span class="math inline">\(v_{it} = c_i + e_{it}\)</span>. Econometricians account for the serial correlation introduced in the composite error term by using generalised least squares. Similar approaches exist in statistics to model the influence of individual-specific factors. They all fall under the “generalised linear mixed model” (GLMM). The general linear mixed model can be written as</p>
+<pre class="math"><code>Y_{it} = f(X_{it}) + W_{it} * c_i + e_{it}</code></pre>
+<p>Where:</p>
+<ul>
+<li><span class="math inline">\(X_{it}\)</span> are covariates with fixed effects<br>
+</li>
+<li><span class="math inline">\(W_{it}\)</span> are covariates with random effects</li>
+</ul>
+<p>These last two equations are equivalent if we only include a random intercept (<span class="math inline">\(W_{it} = 1\)</span>). What the econometrician calls <em>unobserved effects</em>, the statistician calls <em>random intercepts</em> (StackExchange, 2012b).</p>
+<p>Caution is needed, however. While the econometrician’s random effects model is equivalent to the statistician’s random intercept model, estimating both (e.g., using the plm and lmer packages in R) can yield different results as mixed models are usually estimated using (restricted or unrestricted) maximum likelihood and not generalised least squares (StackExchange, 2016).</p>
+<p>“The econometric GLS approach has closed-form analytical solutions computable by standard linear algebra and, although the latter can sometimes get computationally heavy on the machine, the expressions for the estimators are usually rather simple. ML estimation of longitudinal models, on the contrary, is based on numerical optimization of nonlinear functions without closed-form solutions and is thus dependent on approximations and convergence criteria.” (Croissant &amp; Millo, 2008, p.34)</p>
+<p>The GLMM does add the opportunity to also add random, individual specific, slopes for covariates in addition to their general, fixed effect. This can be done by including a variable in both Xit and Wit (Zablotski, 2019c). These random effects represent random variation in the model that can be attributed to a group to which observations belong (Zablotski, 2019a). It is with these types of models that opportunities arise to model not only longitudinal but also hierarchical effects simultaneously (Zablotski, 2019b).</p>
+<p>In statistics, the econometrician’s worry about violation of the “random effects” assumption still holds when working with mixed models and observational data (StackExchange, 2012a). There might still be correlation between the error term and the explanatory variables due to other time-constant unobserved effects. Experimental data does not suffer from this type of endogeneity.</p>
+<p>Specifically for the case of the random intercept, which is the most prevalent in econometrics, we can employ a “correlated random effects approach”, which explicitly models the correlation between <span class="math inline">\(X_{it}\)</span> and <span class="math inline">\(c_i\)</span>. This approach assumes</p>
+<pre class="math"><code>c_i = \psi + X̄_i * \phi + a_i</code></pre>
+<p>where:</p>
+<ul>
+<li><span class="math inline">\(X̄_i\)</span> is the vector of time-averages of all variables</li>
+<li>$E(a_i|X_i) = 0</li>
+</ul>
+<p>So that we can estimate:</p>
+<pre class="math"><code>Y_{it} = f(X_{it}) + \psi + Z_i * \delta + X̄_i * \phi + v_{it}</code></pre>
+<p>Econometricians again use GLS to deal with serial correlation in the composite error <span class="math inline">\(v_{it}\)</span>,all while allowing other time-constant factors and accounting for unobserved time-constant effects that are correlated with <span class="math inline">\(X_{it}\)</span> (Wooldridge, 2010).</p>
+</section>
+<section id="final-note" class="level2">
+<h2 class="anchored" data-anchor-id="final-note">Final Note</h2>
+<p>In addition to the methods described above, econometrics has a different set of methods for analyzing ‘dynamic’ panel data methods, that include lags of variables. I consider these to be outside of the scope of the current discussion.</p>
+
+
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
