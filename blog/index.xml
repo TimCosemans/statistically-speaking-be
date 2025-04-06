@@ -10,7 +10,94 @@
 <atom:link href="https://TimCosemans.github.io/statistically-speaking-be/blog/index.xml" rel="self" type="application/rss+xml"/>
 <description>Tim is a data scientist working at the intersection of AI, business and education.</description>
 <generator>quarto-1.6.43</generator>
-<lastBuildDate>Tue, 07 Feb 2023 00:00:00 GMT</lastBuildDate>
+<lastBuildDate>Sun, 06 Apr 2025 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>A note on panel data methods</title>
+  <dc:creator>Tim Cosemans</dc:creator>
+  <link>https://TimCosemans.github.io/statistically-speaking-be/blog/panel_data_note/</link>
+  <description><![CDATA[ 
+
+
+
+
+<section id="defining-panel-data" class="level1 page-columns page-full">
+<h1>Defining Panel Data</h1>
+<p>Panel, or longitudinal data has become widely available to empirical researchers across economics. Many countries conduct national periodic surveys, such as the British Household Panel Survey or the National Longitudinal Survey in the United States. In addition, commercial organizations offer a wide array of longitudinal datasets for research, such as Nielsen’s Consumer Panel. The units of analysis, individuals, firms etc., are not only observed on different variables (like in cross-sectional data), but also over time. Key to this type of data is the fact that the observations, i.e., the individual data points, are no longer independent since they belong to the same unit of analysis. The most outspoken benefit of this type of data lies in this within-unit variance, that brings extra information in addition to the traditional between-unit variance observed in cross-sectional data <span class="citation" data-cites="capitaine">(Capitaine, Genuer, and Thiébaut 2021)</span>.</p>
+<div class="no-row-height column-margin column-container"><div id="ref-capitaine" class="csl-entry">
+Capitaine, Louis, Robin Genuer, and Rodolphe Thiébaut. 2021. <span>‘Random Forests for High-Dimensional Longitudinal Data’</span>. <em>Statistical Methods in Medical Research</em> 30 (1): 166–84.
+</div></div><p>Panel or longitudinal data is therefore a special case of clustered data, where data points belong to a cluster that causes a correlation between them. A different type of clustered data is hierarchical data where data points are connected not because they belong to the same unit of analysis, but because the unit of analysis belongs to some overarching group. For example, test scores of students have a hierarchical dimension since the unit of analysis, the student, belongs to a group, a class. All grades from students of the same class can be expected to show some correlation due to characteristics of the class, such as the teacher, the class size etc.</p>
+</section>
+<section id="analyzing-panel-data" class="level1 page-columns page-full">
+<h1>Analyzing Panel Data</h1>
+<p>Both econometrics and statistics have a large array of methods to analyze panel data, but the terminology used to denote them can often be conflicting and confusing <span class="citation" data-cites="gelman">(Gelman 2005)</span>. In general, we can define a longitudinal model with individual specific intercepts as follows:</p>
+<div class="no-row-height column-margin column-container"><div id="ref-gelman" class="csl-entry">
+Gelman, Andrew. 2005. <span>‘Why i Don’t Use the Term <span>“Fixed and Random Effects”</span> | Statistical Modeling, Causal Inference, and Social Science’</span>. <a href="https://statmodeling.stat.columbia.edu/2005/01/25/why_i_dont_use/">https://statmodeling.stat.columbia.edu/2005/01/25/why_i_dont_use/</a>.
+</div></div><p><img src="https://latex.codecogs.com/png.latex?%0AY_%7Bit%7D%20=%20f(X_%7Bit%7D)%20+%20c_i%20+%20e_%7Bit%7D%0A"></p>
+<p>where:</p>
+<ul>
+<li><img src="https://latex.codecogs.com/png.latex?f(X_%7Bit%7D)"> is an unknown function<br>
+</li>
+<li><img src="https://latex.codecogs.com/png.latex?Y_%7Bit%7D"> represents the outcome<br>
+</li>
+<li><img src="https://latex.codecogs.com/png.latex?e_%7Bit%7D"> is a standard normally distributed error<br>
+</li>
+<li><img src="https://latex.codecogs.com/png.latex?c_i"> is an unobserved, time-constant factor specific to individual <em>i</em></li>
+</ul>
+<p>In econometrics, this model is called the unobserved effects model <span class="citation" data-cites="wooldridge">(Wooldridge 2016)</span>. There, the discussion usually centers around whether <img src="https://latex.codecogs.com/png.latex?c_i"> must be treated as a random variable (i.e., a random effect) or a parameter to be estimated (i.e., a fixed effect).</p>
+<div class="no-row-height column-margin column-container"></div><p>Over time:</p>
+<ul>
+<li>“Random effects” has become synonymous with zero correlation between <img src="https://latex.codecogs.com/png.latex?c_i"> and <img src="https://latex.codecogs.com/png.latex?X_i"><br>
+</li>
+<li>“Fixed effects” implies correlation between <img src="https://latex.codecogs.com/png.latex?c_i"> and <img src="https://latex.codecogs.com/png.latex?X_i"></li>
+</ul>
+<p>In statistics, on the other hand, a fixed effect is a common term used to refer to any parameter in a regression model that is a population average to be estimated, usually denoted by <img src="https://latex.codecogs.com/png.latex?%5Cbeta">.</p>
+<p>Estimation under the assumption of non-zero correlation in econometrics (“fixed effects estimation”) is more realistic, but requires the removal of the influence of <img src="https://latex.codecogs.com/png.latex?c_i">. This can be done using the “within” transformation of the equation to be estimated, which is equivalent to estimating with OLS</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0AY_%7Bit%7D%20-%20%C8%B2_i%20=%20f(X_%7Bit%7D%20-%20X%CC%84_i)%20+%20e_%7Bit%7D%20-%20%C4%93_i%0A"></p>
+<p>While this approach successfully removes the influence of <img src="https://latex.codecogs.com/png.latex?c_i">, it also removes all time-constant variables. The main downside of this approach is that other time-constant variables cannot be included. Estimation under the assumption of no correlation (“random effects estimation”), does allow for the inclusion of time-constant variables, but is often less realistic. This involves estimating</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0AY_%7Bit%7D%20=%20f(X_%7Bit%7D)%20+%20v_%7Bit%7D%0A"></p>
+<p>where <img src="https://latex.codecogs.com/png.latex?v_%7Bit%7D%20=%20c_i%20+%20e_%7Bit%7D">. Econometricians account for the serial correlation introduced in the composite error term by using generalised least squares. Similar approaches exist in statistics to model the influence of individual-specific factors. They all fall under the “generalised linear mixed model” (GLMM). The general linear mixed model can be written as</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0AY_%7Bit%7D%20=%20f(X_%7Bit%7D)%20+%20W_%7Bit%7D%20*%20c_i%20+%20e_%7Bit%7D%0A"></p>
+<p>Where:</p>
+<ul>
+<li><img src="https://latex.codecogs.com/png.latex?X_%7Bit%7D"> are covariates with fixed effects<br>
+</li>
+<li><img src="https://latex.codecogs.com/png.latex?W_%7Bit%7D"> are covariates with random effects</li>
+</ul>
+<p>These last two equations are equivalent if we only include a random intercept (<img src="https://latex.codecogs.com/png.latex?W_%7Bit%7D%20=%201">). What the econometrician calls unobserved effects, the statistician calls random intercepts.</p>
+<p>Caution is needed, however. While the econometrician’s random effects model is equivalent to the statistician’s random intercept model, estimating both (e.g., using the plm and lmer packages in R) can yield different results as mixed models are usually estimated using (restricted or unrestricted) maximum likelihood and not generalised least squares.</p>
+<p><em>“The econometric GLS approach has closed-form analytical solutions computable by standard linear algebra and, although the latter can sometimes get computationally heavy on the machine, the expressions for the estimators are usually rather simple. ML estimation of longitudinal models, on the contrary, is based on numerical optimization of nonlinear functions without closed-form solutions and is thus dependent on approximations and convergence criteria.”</em> <span class="citation" data-cites="croissant">(Croissant and Millo 2008)</span></p>
+<div class="no-row-height column-margin column-container"><div id="ref-croissant" class="csl-entry">
+Croissant, Yves, and Giovanni Millo. 2008. <span>‘Panel Data Econometrics in r: The Plm Package’</span>. <em>Journal of Statistical Software</em> 27: 1–43.
+</div></div><p>The GLMM does add the opportunity to also add random, individual specific, slopes for covariates in addition to their general, fixed effect. This can be done by including a variable in both <img src="https://latex.codecogs.com/png.latex?X_%7Bit%7D"> and <img src="https://latex.codecogs.com/png.latex?W_%7Bit%7D">. These random effects represent random variation in the model that can be attributed to a group to which observations belong. It is with these types of models that opportunities arise to model not only longitudinal but also hierarchical effects simultaneously.</p>
+<p>In statistics, the econometrician’s worry about violation of the “random effects” assumption still holds when working with mixed models and observational data. There might still be correlation between the error term and the explanatory variables due to other time-constant unobserved effects. Experimental data does not suffer from this type of endogeneity.</p>
+<p>Specifically for the case of the random intercept, which is the most prevalent in econometrics, we can employ a “correlated random effects approach”, which explicitly models the correlation between <img src="https://latex.codecogs.com/png.latex?X_%7Bit%7D"> and <img src="https://latex.codecogs.com/png.latex?c_i">. This approach assumes</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0Ac_i%20=%20%5Cpsi%20+%20X%CC%84_i%20*%20%5Cphi%20+%20a_i%0A"></p>
+<p>where:</p>
+<ul>
+<li><img src="https://latex.codecogs.com/png.latex?X%CC%84_i"> is the vector of time-averages of all variables</li>
+<li><img src="https://latex.codecogs.com/png.latex?E(a_i%7CX_i)%20=%200"></li>
+</ul>
+<p>So that we can estimate:</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0AY_%7Bit%7D%20=%20f(X_%7Bit%7D)%20+%20%5Cpsi%20+%20Z_i%20*%20%5Cdelta%20+%20X%CC%84_i%20*%20%5Cphi%20+%20v_%7Bit%7D%0A"></p>
+<p>Econometricians again use GLS to deal with serial correlation in the composite error <img src="https://latex.codecogs.com/png.latex?v_%7Bit%7D">,all while allowing other time-constant factors and accounting for unobserved time-constant effects that are correlated with <img src="https://latex.codecogs.com/png.latex?X_%7Bit%7D"> <span class="citation" data-cites="wooldridge">(Wooldridge 2016)</span>.</p>
+<div class="no-row-height column-margin column-container"><div id="ref-wooldridge" class="csl-entry">
+Wooldridge, Jeffrey. 2016. <em>Introductory Econometrics</em>. Cengage AU.
+</div></div></section>
+<section id="final-note" class="level1">
+<h1>Final Note</h1>
+<p>In addition to the methods described above, econometrics has a different set of methods for analyzing ‘dynamic’ panel data methods, that include lags of variables. I consider these to be outside of the scope of the current discussion.</p>
+
+
+
+</section>
+
+ ]]></description>
+  <category>data science</category>
+  <category>econometrics</category>
+  <guid>https://TimCosemans.github.io/statistically-speaking-be/blog/panel_data_note/</guid>
+  <pubDate>Sun, 06 Apr 2025 00:00:00 GMT</pubDate>
+  <media:content url="https://TimCosemans.github.io/statistically-speaking-be/blog/panel_data_note/header.jpg" medium="image" type="image/jpeg"/>
+</item>
 <item>
   <title>The struggles of a data marketer</title>
   <dc:creator>Tim Cosemans</dc:creator>
@@ -132,7 +219,7 @@ Wang, Zhiguang, Weizhong Yan, and Tim Oates. 2017. <span>‘Time Series Classifi
 <p>For the best model, we subsequently plot the ROC curve (Figure 5). With an AUC of 0.91 it performs significantly better than a random guess (which would have an AUC of 0.5). We choose the best threshold as the point on the curve that is closest to the upper left corner in terms of Euclidean distance, where the true positive rate is 1 and the false positive rate is 0. This point is indicated with a red dot. At this point, if we classify a country as a medal winner only if its predicted probability is above 0.54, we are able to achieve a false positive rate of 0.09 and a true positive rate of 0.76.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://TimCosemans.github.io/statistically-speaking-be/blog/explainable_cnns/auc.png" class="img-fluid figure-img"></p>
+<p><img src="https://TimCosemans.github.io/statistically-speaking-be/blog/explainable_cnns/roc.png" class="img-fluid figure-img"></p>
 <figcaption>Figure 5: ROC curve for the model with the best training AUC</figcaption>
 </figure>
 </div>

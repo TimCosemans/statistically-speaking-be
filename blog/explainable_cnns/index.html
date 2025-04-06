@@ -252,7 +252,7 @@ Wang, Zhiguang, Weizhong Yan, and Tim Oates. 2017. <span>‘Time Series Classifi
 <p>For the best model, we subsequently plot the ROC curve (Figure 5). With an AUC of 0.91 it performs significantly better than a random guess (which would have an AUC of 0.5). We choose the best threshold as the point on the curve that is closest to the upper left corner in terms of Euclidean distance, where the true positive rate is 1 and the false positive rate is 0. This point is indicated with a red dot. At this point, if we classify a country as a medal winner only if its predicted probability is above 0.54, we are able to achieve a false positive rate of 0.09 and a true positive rate of 0.76.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="auc.png" class="img-fluid figure-img"></p>
+<p><img src="roc.png" class="img-fluid figure-img"></p>
 <figcaption>Figure 5: ROC curve for the model with the best training AUC</figcaption>
 </figure>
 </div>
