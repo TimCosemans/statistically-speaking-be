@@ -7,10 +7,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Tim Cosemans">
-<meta name="dcterms.date" content="2022-06-07">
-<meta name="description" content="Using class activation maps to uncover which countries win olympic medals.">
+<meta name="dcterms.date" content="2025-04-06">
+<meta name="description" content="Statisticians and econometricians often don’t speak the same language.">
 
-<title>Explainable convolutional neural networks for time series classification – Tim Cosemans</title>
+<title>A note on panel data methods – Tim Cosemans</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -90,6 +90,35 @@ div.csl-indent {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -138,16 +167,9 @@ div.csl-indent {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#deep-learning-for-time-series-classification" id="toc-deep-learning-for-time-series-classification" class="nav-link active" data-scroll-target="#deep-learning-for-time-series-classification">Deep learning for time series classification</a></li>
-  <li><a href="#how-it-works-convolutional-neural-networks-101" id="toc-how-it-works-convolutional-neural-networks-101" class="nav-link" data-scroll-target="#how-it-works-convolutional-neural-networks-101">How it works: Convolutional Neural Networks 101</a>
-  <ul class="collapse">
-  <li><a href="#the-residual-network" id="toc-the-residual-network" class="nav-link" data-scroll-target="#the-residual-network">The Residual Network</a></li>
-  </ul></li>
-  <li><a href="#how-to-implement-it-application-to-the-2022-olympic-winter-games" id="toc-how-to-implement-it-application-to-the-2022-olympic-winter-games" class="nav-link" data-scroll-target="#how-to-implement-it-application-to-the-2022-olympic-winter-games">How to implement it: Application to the 2022 Olympic Winter Games</a>
-  <ul class="collapse">
-  <li><a href="#what-it-means-explaining-the-previous-paragraph" id="toc-what-it-means-explaining-the-previous-paragraph" class="nav-link" data-scroll-target="#what-it-means-explaining-the-previous-paragraph">What it means: Explaining the previous paragraph</a></li>
-  </ul></li>
-  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  <li><a href="#defining-panel-data" id="toc-defining-panel-data" class="nav-link active" data-scroll-target="#defining-panel-data">Defining Panel Data</a></li>
+  <li><a href="#analyzing-panel-data" id="toc-analyzing-panel-data" class="nav-link" data-scroll-target="#analyzing-panel-data">Analyzing Panel Data</a></li>
+  <li><a href="#final-note" id="toc-final-note" class="nav-link" data-scroll-target="#final-note">Final Note</a></li>
   </ul>
 </nav>
     </div>
@@ -156,17 +178,16 @@ div.csl-indent {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Explainable convolutional neural networks for time series classification</h1>
+<h1 class="title">A note on panel data methods</h1>
   <div class="quarto-categories">
-    <div class="quarto-category">explainable ai</div>
     <div class="quarto-category">data science</div>
-    <div class="quarto-category">neural networks</div>
+    <div class="quarto-category">econometrics</div>
   </div>
   </div>
 
 <div>
   <div class="description">
-    Using class activation maps to uncover which countries win olympic medals.
+    Statisticians and econometricians often don’t speak the same language.
   </div>
 </div>
 
@@ -183,7 +204,7 @@ div.csl-indent {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">7 June 2022</p>
+      <p class="date">6 April 2025</p>
     </div>
   </div>
   
@@ -195,82 +216,84 @@ div.csl-indent {
 </header>
 
 
-<p>Data science is a rapidly evolving field. Daily, academics at universities work on the next big algorithm that will help make our lives easier. Large corporations, such as Microsoft and Amazon, have even made in-house research part of their competitive advantage by founding their own institutes covering research in areas ranging from economics and health to human-computer interaction and machine learning. Meta, previously Facebook, <a href="https://www.reuters.com/technology/facebook-owner-meta-opens-access-ai-large-language-model-2022-05-03/">recently opened up access to a 175-billion-parameter language model</a> that can be used for answering reading comprehension questions or generating new text. And Google is handing out <a href="https://www.protocol.com/bulletins/google-climate-research-grants">grants of up to $100,000 to help battle climate change in a data-driven way</a>.</p>
-<p>It comes as no surprise that new machine learning research is therefore published at an increasingly faster rate. ArXiv, a popular public repository for research papers, even registered about 100 machine learning papers being published each day in 2018 (Figure 1). Looking at the exponential growth below, that should be plenty more in 2022.</p>
-<div class="quarto-figure quarto-figure-center page-columns page-full">
-<figure class="figure page-columns page-full">
-<p><img src="ml_papers.png" class="img-fluid figure-img"></p>
-<figcaption>Figure 1: Machine Learning ArXiv papers per year <span class="citation" data-cites="fournier">(<a href="#ref-fournier" role="doc-biblioref">Fournier-Viger 2019</a>)</span></figcaption>
-<div class="no-row-height column-margin column-container"><div id="ref-fournier" class="csl-entry" role="listitem">
-Fournier-Viger, Philippe. 2019. <span>‘Too Many Machine Learning Papers? | the Data Blog’</span>. <a href="https://data-mining.philippe-fournier-viger.com/too-many-machine-learning-papers/">https://data-mining.philippe-fournier-viger.com/too-many-machine-learning-papers/</a>.
-</div></div></figure>
-</div>
-<p>While not all research is directly applicable to an industry context and techniques are not always mature enough to warrant implementation, impactful papers appear almost daily. It’s up to us, the data scientists, to track them down.</p>
-<p>In this article, we discuss one of those papers that recently caught our attention. In what follows, we take you along our journey of better understanding how the algorithm works, how to implement it and what it teaches us. More specifically, this article implements the ResNet, a type of convolutional neural network, and applies it to predicting which countries won a medal at the 2022 Winter Olympics. We achieve good performance and, using explainable AI tools, are able to pinpoint why exactly our model performs the way it does.</p>
-<section id="deep-learning-for-time-series-classification" class="level1 page-columns page-full">
-<h1>Deep learning for time series classification</h1>
-<p>Problems in industry are plentiful but often involve some type of binary classification. Will this patient develop cancer? Is this email spam or ham? Will this customer purchase another product? Whether these questions can be answered frequently depends on the type of data available. In the past, companies were often only able to provide data from one point in time. Yet as information systems have become more mature, companies are keeping track of ever-growing amounts of data and are increasingly able to provide data over multiple time periods. They track machine behaviour over time, customer purchases or even employee happiness and want to predict whether a machine will fail, a customer will churn or an employee will leave.</p>
-<p>Techniques that are able to make accurate classifications, using these individual level time series as input, are therefore valuable for industry. In this regard, a (fairly) recent review paper <span class="citation" data-cites="ismail">(<a href="#ref-ismail" role="doc-biblioref">Ismail Fawaz et al. 2019</a>)</span> caught our attention. As the field of time series classification has gained more traction over the years, a myriad of algorithms has been developed to solve the same problem. Through extensive testing, these authors are able to single out which perform best and under which circumstances. Among them is the residual network (ResNet), a convolutional neural network originally used for image classification.</p>
-<div class="no-row-height column-margin column-container"><div id="ref-ismail" class="csl-entry" role="listitem">
-Ismail Fawaz, Hassan, Germain Forestier, Jonathan Weber, Lhassane Idoumghar, and Pierre-Alain Muller. 2019. <span>‘Deep Learning for Time Series Classification: A Review’</span>. <em>Data Mining and Knowledge Discovery</em> 33 (4): 917–63.
+<section id="defining-panel-data" class="level1 page-columns page-full">
+<h1>Defining Panel Data</h1>
+<p>Panel, or longitudinal data has become widely available to empirical researchers across economics. Many countries conduct national periodic surveys, such as the British Household Panel Survey or the National Longitudinal Survey in the United States. In addition, commercial organizations offer a wide array of longitudinal datasets for research, such as Nielsen’s Consumer Panel. The units of analysis, individuals, firms etc., are not only observed on different variables (like in cross-sectional data), but also over time. Key to this type of data is the fact that the observations, i.e., the individual data points, are no longer independent since they belong to the same unit of analysis. The most outspoken benefit of this type of data lies in this within-unit variance, that brings extra information in addition to the traditional between-unit variance observed in cross-sectional data <span class="citation" data-cites="capitaine">(<a href="#ref-capitaine" role="doc-biblioref">Capitaine, Genuer, and Thiébaut 2021</a>)</span>.</p>
+<div class="no-row-height column-margin column-container"><div id="ref-capitaine" class="csl-entry" role="listitem">
+Capitaine, Louis, Robin Genuer, and Rodolphe Thiébaut. 2021. <span>‘Random Forests for High-Dimensional Longitudinal Data’</span>. <em>Statistical Methods in Medical Research</em> 30 (1): 166–84.
+</div></div><p>Panel or longitudinal data is therefore a special case of clustered data, where data points belong to a cluster that causes a correlation between them. A different type of clustered data is hierarchical data where data points are connected not because they belong to the same unit of analysis, but because the unit of analysis belongs to some overarching group. For example, test scores of students have a hierarchical dimension since the unit of analysis, the student, belongs to a group, a class. All grades from students of the same class can be expected to show some correlation due to characteristics of the class, such as the teacher, the class size etc.</p>
+</section>
+<section id="analyzing-panel-data" class="level1 page-columns page-full">
+<h1>Analyzing Panel Data</h1>
+<p>Both econometrics and statistics have a large array of methods to analyze panel data, but the terminology used to denote them can often be conflicting and confusing <span class="citation" data-cites="gelman">(<a href="#ref-gelman" role="doc-biblioref">Gelman 2005</a>)</span>. In general, we can define a longitudinal model with individual specific intercepts as follows:</p>
+<div class="no-row-height column-margin column-container"><div id="ref-gelman" class="csl-entry" role="listitem">
+Gelman, Andrew. 2005. <span>‘Why i Don’t Use the Term <span>“Fixed and Random Effects”</span> | Statistical Modeling, Causal Inference, and Social Science’</span>. <a href="https://statmodeling.stat.columbia.edu/2005/01/25/why_i_dont_use/">https://statmodeling.stat.columbia.edu/2005/01/25/why_i_dont_use/</a>.
+</div></div><p><span class="math display">\[
+Y_{it} = f(X_{it}) + c_i + e_{it}
+\]</span></p>
+<p>where:</p>
+<ul>
+<li><span class="math inline">\(f(X_{it})\)</span> is an unknown function<br>
+</li>
+<li><span class="math inline">\(Y_{it}\)</span> represents the outcome<br>
+</li>
+<li><span class="math inline">\(e_{it}\)</span> is a standard normally distributed error<br>
+</li>
+<li><span class="math inline">\(c_i\)</span> is an unobserved, time-constant factor specific to individual <em>i</em></li>
+</ul>
+<p>In econometrics, this model is called the unobserved effects model <span class="citation" data-cites="wooldridge">(<a href="#ref-wooldridge" role="doc-biblioref">Wooldridge 2016</a>)</span>. There, the discussion usually centers around whether <span class="math inline">\(c_i\)</span> must be treated as a random variable (i.e., a random effect) or a parameter to be estimated (i.e., a fixed effect).</p>
+<div class="no-row-height column-margin column-container"></div><p>Over time:</p>
+<ul>
+<li>“Random effects” has become synonymous with zero correlation between <span class="math inline">\(c_i\)</span> and <span class="math inline">\(X_i\)</span><br>
+</li>
+<li>“Fixed effects” implies correlation between <span class="math inline">\(c_i\)</span> and <span class="math inline">\(X_i\)</span></li>
+</ul>
+<p>In statistics, on the other hand, a fixed effect is a common term used to refer to any parameter in a regression model that is a population average to be estimated, usually denoted by <span class="math inline">\(\beta\)</span>.</p>
+<p>Estimation under the assumption of non-zero correlation in econometrics (“fixed effects estimation”) is more realistic, but requires the removal of the influence of <span class="math inline">\(c_i\)</span>. This can be done using the “within” transformation of the equation to be estimated, which is equivalent to estimating with OLS</p>
+<p><span class="math display">\[
+Y_{it} - Ȳ_i = f(X_{it} - X̄_i) + e_{it} - ē_i
+\]</span></p>
+<p>While this approach successfully removes the influence of <span class="math inline">\(c_i\)</span>, it also removes all time-constant variables. The main downside of this approach is that other time-constant variables cannot be included. Estimation under the assumption of no correlation (“random effects estimation”), does allow for the inclusion of time-constant variables, but is often less realistic. This involves estimating</p>
+<p><span class="math display">\[
+Y_{it} = f(X_{it}) + v_{it}
+\]</span></p>
+<p>where <span class="math inline">\(v_{it} = c_i + e_{it}\)</span>. Econometricians account for the serial correlation introduced in the composite error term by using generalised least squares. Similar approaches exist in statistics to model the influence of individual-specific factors. They all fall under the “generalised linear mixed model” (GLMM). The general linear mixed model can be written as</p>
+<p><span class="math display">\[
+Y_{it} = f(X_{it}) + W_{it} * c_i + e_{it}
+\]</span></p>
+<p>Where:</p>
+<ul>
+<li><span class="math inline">\(X_{it}\)</span> are covariates with fixed effects<br>
+</li>
+<li><span class="math inline">\(W_{it}\)</span> are covariates with random effects</li>
+</ul>
+<p>These last two equations are equivalent if we only include a random intercept (<span class="math inline">\(W_{it} = 1\)</span>). What the econometrician calls unobserved effects, the statistician calls random intercepts.</p>
+<p>Caution is needed, however. While the econometrician’s random effects model is equivalent to the statistician’s random intercept model, estimating both (e.g., using the plm and lmer packages in R) can yield different results as mixed models are usually estimated using (restricted or unrestricted) maximum likelihood and not generalised least squares.</p>
+<p><strong>“The econometric GLS approach has closed-form analytical solutions computable by standard linear algebra and, although the latter can sometimes get computationally heavy on the machine, the expressions for the estimators are usually rather simple. ML estimation of longitudinal models, on the contrary, is based on numerical optimization of nonlinear functions without closed-form solutions and is thus dependent on approximations and convergence criteria.”</strong> <span class="citation" data-cites="croissant">(<a href="#ref-croissant" role="doc-biblioref">Croissant and Millo 2008</a>)</span></p>
+<div class="no-row-height column-margin column-container"><div id="ref-croissant" class="csl-entry" role="listitem">
+Croissant, Yves, and Giovanni Millo. 2008. <span>‘Panel Data Econometrics in r: The Plm Package’</span>. <em>Journal of Statistical Software</em> 27: 1–43.
+</div></div><p>The GLMM does add the opportunity to also add random, individual specific, slopes for covariates in addition to their general, fixed effect. This can be done by including a variable in both <span class="math inline">\(X_{it}\)</span> and <span class="math inline">\(W_{it}\)</span>. These random effects represent random variation in the model that can be attributed to a group to which observations belong. It is with these types of models that opportunities arise to model not only longitudinal but also hierarchical effects simultaneously.</p>
+<p>In statistics, the econometrician’s worry about violation of the “random effects” assumption still holds when working with mixed models and observational data. There might still be correlation between the error term and the explanatory variables due to other time-constant unobserved effects. Experimental data does not suffer from this type of endogeneity.</p>
+<p>Specifically for the case of the random intercept, which is the most prevalent in econometrics, we can employ a “correlated random effects approach”, which explicitly models the correlation between <span class="math inline">\(X_{it}\)</span> and <span class="math inline">\(c_i\)</span>. This approach assumes</p>
+<p><span class="math display">\[
+c_i = \psi + X̄_i * \phi + a_i
+\]</span></p>
+<p>where:</p>
+<ul>
+<li><span class="math inline">\(X̄_i\)</span> is the vector of time-averages of all variables</li>
+<li>$E(a_i|X_i) = 0</li>
+</ul>
+<p>So that we can estimate:</p>
+<p><span class="math display">\[
+Y_{it} = f(X_{it}) + \psi + Z_i * \delta + X̄_i * \phi + v_{it}
+\]</span></p>
+<p>Econometricians again use GLS to deal with serial correlation in the composite error <span class="math inline">\(v_{it}\)</span>,all while allowing other time-constant factors and accounting for unobserved time-constant effects that are correlated with <span class="math inline">\(X_{it}\)</span> <span class="citation" data-cites="wooldridge">(<a href="#ref-wooldridge" role="doc-biblioref">Wooldridge 2016</a>)</span>.</p>
+<div class="no-row-height column-margin column-container"><div id="ref-wooldridge" class="csl-entry" role="listitem">
+Wooldridge, Jeffrey. 2016. <em>Introductory Econometrics</em>. Cengage AU.
 </div></div></section>
-<section id="how-it-works-convolutional-neural-networks-101" class="level1 page-columns page-full">
-<h1>How it works: Convolutional Neural Networks 101</h1>
-<p>At its core, a residual network (ResNet) is a convolutional neural network (CNN). These types of neural networks have already been successfully implemented in image recognition and natural language processing. While this branch of neural networks is therefore most well-known for separating cats from dogs or summarising reviews on TripAdvisor, it also has its applications to time series classification.</p>
-<p>The CNN gets its strength from repeatedly sliding a ‘filter’ over a time series (Figure 2), taking some weighted average of the values in its range, and thereby producing a new time series. Different filters will extract different features (such as trends) and applying a filter to an already filtered time series allows for detection of even the best hidden signals. The weights for each of the observations in a filter is determined by training the CNN. They are optimized for classification of the time series at hand.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="filtering.png" class="img-fluid figure-img"></p>
-<figcaption>Figure 2: Illustration of the filtering process</figcaption>
-</figure>
-</div>
-<section id="the-residual-network" class="level2 page-columns page-full">
-<h2 class="anchored" data-anchor-id="the-residual-network">The Residual Network</h2>
-<p>The residual network (ResNet) is a special type of CNN that differs in its architecture (or sequence of layers; Figure 3). While we have done our research on the latter, the ResNet requires special attention as it contains some modifications. More specifically, a residual network <span class="citation" data-cites="he">Wang, Yan, and Oates (<a href="#ref-wang" role="doc-biblioref">2017</a>)</span> contains three blocks of each three convolutional layers (Figure 3). The first block contains three layers of 64 filters, the last two blocks contain 128 filters per layer. After each block of three convolutional layers, the input to that block (i.e., the raw data or the output of the previous block) is added to the output of the third layer, using a so-called ‘shortcut connection’. In addition, after each convolutional layer, batch normalisation is executed. In the last convolutional layer of each block, the input from the shortcut connection is also batch normalised independently before being added. Lastly, after each layer, each of the elements is subjected to a ReLU activation function before being passed on to the next layer.</p>
-<div class="no-row-height column-margin column-container"><div id="ref-wang" class="csl-entry" role="listitem">
-Wang, Zhiguang, Weizhong Yan, and Tim Oates. 2017. <span>‘Time Series Classification from Scratch with Deep Neural Networks: A Strong Baseline’</span>. In <em>2017 International Joint Conference on Neural Networks (IJCNN)</em>, 1578–85. IEEE.
-</div></div><div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="architecture.png" class="img-fluid figure-img"></p>
-<figcaption>Figure 3: Architecture of a Residual Network</figcaption>
-</figure>
-</div>
-<p>After three blocks of convolutional layers, the output of the third block is put through a global average pooling (GAP) layer: Each time series is averaged and can now be represented by a single node. In a final stage, each of these nodes is fully connected to the output layer, i.e., the nodes with the class indication. A sigmoid activation function allows for the prediction of a probability for belonging to each of the classes.</p>
-</section>
-</section>
-<section id="how-to-implement-it-application-to-the-2022-olympic-winter-games" class="level1">
-<h1>How to implement it: Application to the 2022 Olympic Winter Games</h1>
-<p>Now that we’ve seen the theoretical basis behind the ResNet, it’s time for an application! While many machine learning models are implemented in well-known Python libraries, the ResNet for time series classification is not. No need to panic! We will not have to optimise our loss functions by hand, we can just rely on a deep learning framework, such as TensorFlow or PyTorch. To get a feel for the power of the ResNet, we will now try to predict whether a country has won a medal at the Olympic Winter Games in 2022 just by looking at their GDP from 1990 to 2018. The code behind our results can be found on <a href="https://github.com/TimCosemans/explainable-cnns/tree/main">GitHub</a>. For now, we will just focus on the results and what they mean. This section is somewhat technical, you can skip it if you want and just move on to the interpretation of the results.</p>
-<p>The data we use was collected from the web (https://olympics.com/en/olympic-games/beijing-2022/medals and https://www.kaggle.com/datasets/nitishabharathi/gdp-per-capita-all-countries) and put into files that can easily be read by Python. We only include countries that participated in the 2022 Olympic Winter Games. In addition, the ResNet requires full time series without missing values. For the purpose of this example, we therefore choose to delete 18 cases with missing values (although there might be better strategies to deal with the missingness). Our data now consists of 71 countries, 50 of which will be used to train the model. The remaining 21 make up the test set, i.e., the unseen observations on which our final model will be evaluated.</p>
-<p>The model we built matches the architecture from Figure 3 exactly. Yet however good it may be, without some sense-making it remains a black box. Let’s first start by inspecting its performance. Throughout the epochs (i.e., passes through the entire data set), the model should become better at matching the data. Figure 4 shows that both the training and test loss decline throughout the epochs. After about 350 epochs, our training stops since training loss has not decreased for several epochs. We also plot the test loss, yet do not make decisions based on this quantity. As expected, the test loss is always slightly higher than the training loss. Both training and test accuracy rapidly rise after the first 50 epochs and then remain almost constant at 80-85%. The AUC follows a similar pattern and remains constant at around 0.9. Overall, the model performs well. Since the accuracy of a classification problem is highly dependent on the chosen threshold, we choose our best model based on the training AUC. This is maximal around 210 epochs.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="performance.png" class="img-fluid figure-img"></p>
-<figcaption>Figure 4: Performance of the model in terms of loss, accuracy, and AUC for both the test and training set</figcaption>
-</figure>
-</div>
-<p>For the best model, we subsequently plot the ROC curve (Figure 5). With an AUC of 0.91 it performs significantly better than a random guess (which would have an AUC of 0.5). We choose the best threshold as the point on the curve that is closest to the upper left corner in terms of Euclidean distance, where the true positive rate is 1 and the false positive rate is 0. This point is indicated with a red dot. At this point, if we classify a country as a medal winner only if its predicted probability is above 0.54, we are able to achieve a false positive rate of 0.09 and a true positive rate of 0.76.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="roc.png" class="img-fluid figure-img"></p>
-<figcaption>Figure 5: ROC curve for the model with the best training AUC</figcaption>
-</figure>
-</div>
-<section id="what-it-means-explaining-the-previous-paragraph" class="level2">
-<h2 class="anchored" data-anchor-id="what-it-means-explaining-the-previous-paragraph">What it means: Explaining the previous paragraph</h2>
-<p>The discussion above was very technical and still does not give us much insight into the power of the ResNet. The model we chose, based on the results from the training set, will only classify a country as a medal winner if the predicted probability it wins one is larger than 54%. To present an unbiased estimate of this model’s performance, we calculate some statistics on the test set. Our model achieves an overall precision of about 85% and a recall of about 87%. This means that 85% of all predicted medal winners will actually win one and we correctly predict 87% of all true medal winners. Given that our model only uses GDP data (ending three years before the 2022 Olympic Winter Games), this is a rather good performance!</p>
-<p>Yet you might be wondering how we can achieve such good performance with the data at hand. As with many deep learning models, our model remains a black box. To find out what features of the time series add to its prediction, we can use a class activation map. This tool allows us to determine the importance of each temporal element for the classification of the time series. Our class activation map (Figure 6) shows the importance of the GDP in each year for the probability of that country being a medal winner. It shows that especially periods of high growth contribute to a higher probability of winning a medal at the 2022 Winter Olympics. Intuitively this makes sense: Wealthier countries have more funds to invest in the development of athletic capabilities and are therefore more likely to win a medal.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="cam.png" class="img-fluid figure-img"></p>
-<figcaption>Figure 6: Class activation map for the test set (high values are indicated by a deep red, low values by a deep blue)</figcaption>
-</figure>
-</div>
-</section>
-</section>
-<section id="conclusion" class="level1">
-<h1>Conclusion</h1>
-<p>Data science is an evolving field and as a data scientists we have to stay in the loop with regards to its latest innovations. This article gives some insight into that process. From researching the foundations of the ResNet to building the neural network and interpreting its results. By presenting the ResNets good performance and interpretable results, we hope to have convinced you of the potential of neural networks for the classification of time series. Happy programming!</p>
+<section id="final-note" class="level1">
+<h1>Final Note</h1>
+<p>In addition to the methods described above, econometrics has a different set of methods for analyzing ‘dynamic’ panel data methods, that include lags of variables. I consider these to be outside of the scope of the current discussion.</p>
 
 
 
