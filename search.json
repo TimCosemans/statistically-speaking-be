@@ -1,5 +1,19 @@
 [
   {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Tim Cosemans",
+    "section": "",
+    "text": "I love uncovering the stories hidden in data. By combining analytical techniques with behavioral data, I aim to understand why people make the choices they do and how those patterns shape the world around us.\nWhether it’s predicting student drop-out, optimizing marketing strategies, or exploring decision-making in organizations, I enjoy bridging the gap between numbers and real-life behavior. For me, data isn’t just about models and algorithms—it’s a way to gain deeper insights into human nature.\nBeyond my technical work, I’m passionate about sharing knowledge, whether through teaching, mentoring, or collaborating with stakeholders to make AI and data science more accessible and ethical. At the end of the day, my goal is to use data not just for predictions, but to better understand and improve the way we interact, learn, and grow."
+  },
+  {
+    "objectID": "index.html#bio",
+    "href": "index.html#bio",
+    "title": "Tim Cosemans",
+    "section": "",
+    "text": "I love uncovering the stories hidden in data. By combining analytical techniques with behavioral data, I aim to understand why people make the choices they do and how those patterns shape the world around us.\nWhether it’s predicting student drop-out, optimizing marketing strategies, or exploring decision-making in organizations, I enjoy bridging the gap between numbers and real-life behavior. For me, data isn’t just about models and algorithms—it’s a way to gain deeper insights into human nature.\nBeyond my technical work, I’m passionate about sharing knowledge, whether through teaching, mentoring, or collaborating with stakeholders to make AI and data science more accessible and ethical. At the end of the day, my goal is to use data not just for predictions, but to better understand and improve the way we interact, learn, and grow."
+  },
+  {
     "objectID": "blog/panel_data_note/index.html",
     "href": "blog/panel_data_note/index.html",
     "title": "A note on panel data methods",
@@ -70,20 +84,6 @@
     "text": "Public Speaking & Talks\n\nTrefdag Vlaanderen Digitaal (2024): AI in education & student performance.\nStudiedag AI Digitaal Vlaanderen (2024): Ethical AI in education.\nStudiedag AI Kenniscentrum Digisprong (2024): Critical AI perspectives in education.\nBusiness Club AI Voka (2023): Data-driven marketing analytics.\nData Science Meetup Leuven (2020): Exploratory factor analysis for binary data."
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Tim Cosemans",
-    "section": "",
-    "text": "I love uncovering the stories hidden in data. By combining analytical techniques with behavioral data, I aim to understand why people make the choices they do and how those patterns shape the world around us.\nWhether it’s predicting student drop-out, optimizing marketing strategies, or exploring decision-making in organizations, I enjoy bridging the gap between numbers and real-life behavior. For me, data isn’t just about models and algorithms—it’s a way to gain deeper insights into human nature.\nBeyond my technical work, I’m passionate about sharing knowledge, whether through teaching, mentoring, or collaborating with stakeholders to make AI and data science more accessible and ethical. At the end of the day, my goal is to use data not just for predictions, but to better understand and improve the way we interact, learn, and grow."
-  },
-  {
-    "objectID": "index.html#bio",
-    "href": "index.html#bio",
-    "title": "Tim Cosemans",
-    "section": "",
-    "text": "I love uncovering the stories hidden in data. By combining analytical techniques with behavioral data, I aim to understand why people make the choices they do and how those patterns shape the world around us.\nWhether it’s predicting student drop-out, optimizing marketing strategies, or exploring decision-making in organizations, I enjoy bridging the gap between numbers and real-life behavior. For me, data isn’t just about models and algorithms—it’s a way to gain deeper insights into human nature.\nBeyond my technical work, I’m passionate about sharing knowledge, whether through teaching, mentoring, or collaborating with stakeholders to make AI and data science more accessible and ethical. At the end of the day, my goal is to use data not just for predictions, but to better understand and improve the way we interact, learn, and grow."
-  },
-  {
     "objectID": "disclaimer/index.html",
     "href": "disclaimer/index.html",
     "title": "Tim Cosemans",
@@ -116,6 +116,6 @@
     "href": "blog/index.html",
     "title": "Blog",
     "section": "",
-    "text": "A note on panel data methods\n\n\n\n\n\n\ndata science\n\n\neconometrics\n\n\n\nStatisticians and econometricians often don’t speak the same language.\n\n\n\n\n\n6 Apr 2025\n\n\nTim Cosemans\n\n\n\n\n\n\n\n\n\n\n\n\nThe struggles of a data marketer\n\n\n\n\n\n\ndata strategy\n\n\ndata science\n\n\nmarketing analytics\n\n\n\nHow data marketing has become more complicated than ever.\n\n\n\n\n\n7 Feb 2023\n\n\nTim Cosemans\n\n\n\n\n\n\n\n\n\n\n\n\nExplainable convolutional neural networks for time series classification\n\n\n\n\n\n\nexplainable ai\n\n\ndata science\n\n\nneural networks\n\n\n\nUsing class activation maps to uncover which countries win olympic medals.\n\n\n\n\n\n7 Jun 2022\n\n\nTim Cosemans\n\n\n\n\n\n\nNo matching items"
+    "text": "A note on panel data methods\n\n\n\ndata science\n\neconometrics\n\n\n\nStatisticians and econometricians often don’t speak the same language.\n\n\n\n\n\n6 Apr 2025\n\n\nTim Cosemans\n\n\n\n\n\n\n\n\n\n\n\n\nThe struggles of a data marketer\n\n\n\ndata strategy\n\ndata science\n\nmarketing analytics\n\n\n\nHow data marketing has become more complicated than ever.\n\n\n\n\n\n7 Feb 2023\n\n\nTim Cosemans\n\n\n\n\n\n\n\n\n\n\n\n\nExplainable convolutional neural networks for time series classification\n\n\n\nexplainable ai\n\ndata science\n\nneural networks\n\n\n\nUsing class activation maps to uncover which countries win olympic medals.\n\n\n\n\n\n7 Jun 2022\n\n\nTim Cosemans\n\n\n\n\n\nNo matching items"
   }
 ]
