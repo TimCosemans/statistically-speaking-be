@@ -1,31 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://TimCosemans.github.io/statistically-speaking-be/index.html</loc>
-    <lastmod>2025-06-03T18:21:13.359Z</lastmod>
-  </url>
-  <url>
-    <loc>https://TimCosemans.github.io/statistically-speaking-be/blog/panel_data_note/index.html</loc>
-    <lastmod>2025-06-03T18:21:13.358Z</lastmod>
-  </url>
-  <url>
-    <loc>https://TimCosemans.github.io/statistically-speaking-be/blog/struggles_data_marketeer/index.html</loc>
-    <lastmod>2025-06-03T18:21:13.359Z</lastmod>
-  </url>
-  <url>
-    <loc>https://TimCosemans.github.io/statistically-speaking-be/cv/index.html</loc>
-    <lastmod>2025-06-03T18:21:13.359Z</lastmod>
-  </url>
-  <url>
-    <loc>https://TimCosemans.github.io/statistically-speaking-be/disclaimer/index.html</loc>
-    <lastmod>2025-06-03T18:21:13.359Z</lastmod>
-  </url>
-  <url>
     <loc>https://TimCosemans.github.io/statistically-speaking-be/blog/explainable_cnns/index.html</loc>
-    <lastmod>2025-06-03T18:21:13.355Z</lastmod>
+    <lastmod>2025-09-24T19:17:08.654Z</lastmod>
   </url>
   <url>
     <loc>https://TimCosemans.github.io/statistically-speaking-be/blog/index.html</loc>
-    <lastmod>2025-06-03T18:21:13.358Z</lastmod>
+    <lastmod>2025-09-24T19:17:08.656Z</lastmod>
+  </url>
+  <url>
+    <loc>https://TimCosemans.github.io/statistically-speaking-be/blog/ai_nuchterheid/index.html</loc>
+    <lastmod>2025-09-24T19:17:08.652Z</lastmod>
+  </url>
+  <url>
+    <loc>https://TimCosemans.github.io/statistically-speaking-be/index.html</loc>
+    <lastmod>2025-09-24T19:17:08.658Z</lastmod>
+  </url>
+  <url>
+    <loc>https://TimCosemans.github.io/statistically-speaking-be/cv/index.html</loc>
+    <lastmod>2025-09-24T19:17:08.657Z</lastmod>
+  </url>
+  <url>
+    <loc>https://TimCosemans.github.io/statistically-speaking-be/disclaimer/index.html</loc>
+    <lastmod>2025-09-24T19:17:08.657Z</lastmod>
+  </url>
+  <url>
+    <loc>https://TimCosemans.github.io/statistically-speaking-be/blog/panel_data_note/index.html</loc>
+    <lastmod>2025-09-24T19:17:08.656Z</lastmod>
+  </url>
+  <url>
+    <loc>https://TimCosemans.github.io/statistically-speaking-be/blog/struggles_data_marketeer/index.html</loc>
+    <lastmod>2025-09-24T19:17:08.657Z</lastmod>
   </url>
 </urlset>

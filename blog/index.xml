@@ -9,8 +9,41 @@
 <link>https://TimCosemans.github.io/statistically-speaking-be/blog/</link>
 <atom:link href="https://TimCosemans.github.io/statistically-speaking-be/blog/index.xml" rel="self" type="application/rss+xml"/>
 <description>Tim is a data scientist working at the intersection of AI, business and education.</description>
-<generator>quarto-1.7.31</generator>
-<lastBuildDate>Sun, 06 Apr 2025 00:00:00 GMT</lastBuildDate>
+<generator>quarto-1.8.24</generator>
+<lastBuildDate>Sun, 24 Aug 2025 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>AI-nuchterheid</title>
+  <dc:creator>Tim Cosemans</dc:creator>
+  <link>https://TimCosemans.github.io/statistically-speaking-be/blog/ai_nuchterheid/</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>Knipper twee keer en je geraakt onherroepelijk achterop in het oerwoud aan nieuwe AI-modellen en -toepassingen. De techgiganten vliegen elkaar de afgelopen maanden onophoudelijk in de haren en dat levert elke week minstens één nieuwe vakterm op die we ons eigen moeten maken. Met de nadruk op moeten, want de beloftes zijn hoog. En je wil de AI-trein toch niet missen?</p>
+<section id="waarom-doen-we-dit-eigenlijk" class="level1">
+<h1>Waarom doen we dit eigenlijk?</h1>
+<p>Je kan het ze niet kwalijk nemen daar in <em>Silicon Valley</em>. De geconcentreerde smeltkroes van ingenieurs en wetenschappers staat te springen voor elke nieuwigheid. Ze zijn ‘innovators’, altijd op zoek naar het nieuwste hoogtechnologische gat in de markt. Hoe groot het gat is, maakt eigenlijk niet uit. Zolang het naar gevuld kan worden. Het is nog maar af te wachten of de zoveelste iteratie van de slimme brillen van Meta, of het nu met AR, VR of AI is, het dit keer wel verder zullen brengen dan de YouTubekanalen van de <em>techfluencers</em>. Wij kunnen niet anders dan ernaar kijken als een kip naar het onweer. Gefascineerd, onder de indruk, en zonder besef van wat er nog komen zal. Maar de Meta’s en de Google’s van deze wereld hebben grotere doelen. Ze mikken hoger. Wat we nu zien zijn slechts bijproducten in de race naar waar het allemaal echt om draait: <em>artificial general intelligence</em>. Of nog beter <em>artificial superintelligence</em>. Het benaderen of zelfs voorbijstreven van de menselijke intelligentie door een machine.</p>
+</section>
+<section id="kan-dat-eigenlijk-wel" class="level1">
+<h1>Kan dat eigenlijk wel?</h1>
+<p>Terwijl de psychologie na jaren onderzoek nog steeds geen allesomvattende definitie kan geven van menselijke intelligentie, hebben de computerwetenschappen er alvast een antwoord op: <em>benchmarks</em>. Oftewel vooraf gedefinieerde taken, van gestandaardiseerde examens tot vertalingen, met een duidelijk juist antwoord. Nu ik weet dat onze volledige intellectuele capaciteiten vervat kunnen worden in staafdiagrammen, lijkt psycholoog me opeens geen al te moeilijk beroep meer. Microsoft concludeert daarom in een recent onderzoek dat heel wat banen op de schop kunnen. Wat handig dat zij al even alles op alles zetten om hun AI-assistent, <em>Copilot</em>, aan de man te krijgen. Het lijstje van die beroepen? Dat loopt uiteen van schrijvers tot wiskundigen. Iedereen weet toch dat de beste romans en het meest baanbrekende onderzoek gebeurt door mensen die enkel reeds bestaand werken samenvatten, toch?<br>
+  # Wat brengt de toekomst dan? Het eerste techbedrijf dat de eindmeet in de race om <em>artificial general intelligence</em> of zelfs <em>artificial superintelligence</em> weet te halen kan aandeelhouders een gouden toekomst verzekeren. Hoe die eindmeet er precies uitziet, daar blijven de CEO’s van de eerdergenoemde techbedrijven vaag over. Maar in de filmpjes en interviews die aan de lopende band opduiken zie je hun Amerikaanse ogen fonkelen. Van verwachting of angst, dat weten we helaas nog niet. Bij Sam Altman, de CEO van OpenAI, lijkt het er alvast op dat het dat laatste is. Hij vergelijkt de komst van het, nota bene door zijn eigen bedrijf ontwikkelde, GPT-5 met die van de atoombom. Mark Zuckerberg ziet er dan alweer geen graat in en droomt luidop van een poeslieve superintelligentie, dat gedwee onze saaie taakjes zal uitvoeren. (Iemand interesse in een AI Agent die wel aan je belastingaangifte uitkan?) En dat allemaal berustend op zijn recent samengestelde miljoenenteam van knappe koppen. Wat nog moet blijken is of het amalgaam van de knapste koppen ook het knapste team vormt. Mijn oud professor groepsdynamica zou dat alvast tegenspreken. Wat Mark ook gemakshalve vergeet te vermelden is dat zijn bedrijf de Europese AI Act links laat liggen. Of de technologie poeslief wordt weten we nog niet, maar ethisch ontwikkeld zal hij alvast niet zijn. Laten we niet doen alsof wetgeving de heilige graal is. Zelfs de meer meegaande bedrijven, zoals Google, zijn niet onbekend met het geweer van schouder te wisselen als hen dat een voordeel kan opleveren. Want de politieke macht kan zonder veel problemen de geldtoevoer afknippen, dus laten we vooral zorgen dat we bij hen op een goed blaadje staan. Ook al betekent dat dat we ideologisch twijfelachtige regimes moeten steunen. Zijn dat de bedrijven waar we dagelijks onze Europese bedrijfsgeheimen naartoe pompen omdat we te lui zijn om te zoeken naar de omzet van het afgelopen kwartaal in het jaarlijks financieel rapport?</p>
+</section>
+<section id="en-nu" class="level1">
+<h1>En nu?</h1>
+<p>Begrijp me niet verkeerd. Ik kan de komst van de open-source AI-modellen en de tools die ervoor worden ontwikkeld alleen maar toejuichen. De technologie belooft ons leven alleen maar makkelijker te maken. Ze zou zomaar eens een chatbot kunnen opleveren die de volgende generatie aan leerlingen een antwoord kan geven op de vraag waarom de Westerse landen hun ogen zo lang hebben gesloten voor de oorlog in Gaza. Of beter nog, ze zou je een antwoord kunnen geven op de vraag hoeveel vrije dagen je nog op overschot hebt zonder daarbij Mark op de hoogte te brengen van je vakantieplannen.</p>
+
+
+</section>
+
+ ]]></description>
+  <category>data ethics</category>
+  <category>data science</category>
+  <guid>https://TimCosemans.github.io/statistically-speaking-be/blog/ai_nuchterheid/</guid>
+  <pubDate>Sun, 24 Aug 2025 00:00:00 GMT</pubDate>
+  <media:content url="https://TimCosemans.github.io/statistically-speaking-be/blog/ai_nuchterheid/header.jpg" medium="image" type="image/jpeg"/>
+</item>
 <item>
   <title>A note on panel data methods</title>
   <dc:creator>Tim Cosemans</dc:creator>
