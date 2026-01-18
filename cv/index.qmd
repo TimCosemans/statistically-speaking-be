@@ -8,7 +8,7 @@ title: Curriculum Vitae
 
 *10/2023 – Present*
 
-- Developing AI-driven solutions (predictive modeling for drop-out prevention and development of an LLM-based assistant using RAG).
+- Developing AI-driven solutions (predictive modeling and development of an LLM-based assistant using RAG).
 - Leading business intelligence initiatives and implementing scalable data infrastructure.
 - Starting data governance, quality and risk management initiatives. 
 - Collaborating with stakeholders to ensure ethical data use in education.
@@ -114,14 +114,14 @@ title: Curriculum Vitae
 
 ## Papers
 - **Believe It Before You See It**: The Role of Trust in AI Adoption | Work in progress
-- **Smart Signal:** A Fair Early Warning System to Detect Student Failure | Work in progress
+- **Student Dynamics:** A Fair Early Warning System to Detect Dropout | Work in progress
 - **Loosening the Ties that Bind:** Churn and Discontinuance in Multiproduct Settings | Work in progress
 - **Exploratory Graph Analysis for Factor Retention:** Simulation Results for Continuous and Binary Data | [Educational & Psychological Measurement](https://journals.sagepub.com/doi/full/10.1177/00131644211059089)
 
 ## Projects
 
 - **LLM Assistant (Smartschool):** Using the Smartschool manual to develop a smart assistant with RAG.
-- **Smart Signal (Smartschool):** Predicting student drop-out using explainable ML, field testing adoption strategies.
+- **Smart Signal (Smartschool):** Predicting student failure using ML.
 - **Business Intelligence (Smartschool):** Implemented BI system using ELK stack.
 - **Anomaly Detection (dotArchie | Algorhythm):** Built neural networks to predict server failures.
 - **Marketing Data Engineering (Publiq | Algorhythm):** Set up website tracking infrastructure.
@@ -133,7 +133,7 @@ title: Curriculum Vitae
 
 ## Public Speaking & Talks
 
-- **Faculty of Law, Economics and Finance at University of Luxembourg (2025):** Smart Signal: An Early Warning System to Prevent Student Drop-Out. 
+- **Faculty of Law, Economics and Finance at University of Luxembourg (2025):** Student Dynamics: An Early Warning System to Prevent Student Dropout. 
 - **Trefdag Vlaanderen Digitaal (2024):** AI in education & student performance.
 - **Studiedag AI Digitaal Vlaanderen (2024):** Ethical AI in education.
 - **Studiedag AI Kenniscentrum Digisprong (2024):** Critical AI perspectives in education.
