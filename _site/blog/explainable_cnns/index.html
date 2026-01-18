@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-GB" xml:lang="en-GB"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.24">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Tim Cosemans">
+<meta name="dcterms.date" content="2022-06-07">
+<meta name="description" content="Using class activation maps to uncover which countries win olympic medals.">
+
+<title>Explainable convolutional neural networks for time series classification – Tim Cosemans</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-80278d44abbb443aada24b13759e4b65.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Tim Cosemans</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../cv/index.html"> 
+<span class="menu-text">CV</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../blog/index.html"> 
+<span class="menu-text">Blog</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#deep-learning-for-time-series-classification" id="toc-deep-learning-for-time-series-classification" class="nav-link active" data-scroll-target="#deep-learning-for-time-series-classification">Deep learning for time series classification</a></li>
+  <li><a href="#how-it-works-convolutional-neural-networks-101" id="toc-how-it-works-convolutional-neural-networks-101" class="nav-link" data-scroll-target="#how-it-works-convolutional-neural-networks-101">How it works: Convolutional Neural Networks 101</a>
+  <ul class="collapse">
+  <li><a href="#the-residual-network" id="toc-the-residual-network" class="nav-link" data-scroll-target="#the-residual-network">The Residual Network</a></li>
+  </ul></li>
+  <li><a href="#how-to-implement-it-application-to-the-2022-olympic-winter-games" id="toc-how-to-implement-it-application-to-the-2022-olympic-winter-games" class="nav-link" data-scroll-target="#how-to-implement-it-application-to-the-2022-olympic-winter-games">How to implement it: Application to the 2022 Olympic Winter Games</a>
+  <ul class="collapse">
+  <li><a href="#what-it-means-explaining-the-previous-paragraph" id="toc-what-it-means-explaining-the-previous-paragraph" class="nav-link" data-scroll-target="#what-it-means-explaining-the-previous-paragraph">What it means: Explaining the previous paragraph</a></li>
+  </ul></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content page-columns page-full" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Explainable convolutional neural networks for time series classification</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">explainable ai</div>
+    <div class="quarto-category">data science</div>
+    <div class="quarto-category">neural networks</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    Using class activation maps to uncover which countries win olympic medals.
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Tim Cosemans <a href="mailto:tim@statisticallyspeaking.be" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">7 June 2022</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Data science is a rapidly evolving field. Daily, academics at universities work on the next big algorithm that will help make our lives easier. Large corporations, such as Microsoft and Amazon, have even made in-house research part of their competitive advantage by founding their own institutes covering research in areas ranging from economics and health to human-computer interaction and machine learning. Meta, previously Facebook, <a href="https://www.reuters.com/technology/facebook-owner-meta-opens-access-ai-large-language-model-2022-05-03/">recently opened up access to a 175-billion-parameter language model</a> that can be used for answering reading comprehension questions or generating new text. And Google is handing out <a href="https://www.protocol.com/bulletins/google-climate-research-grants">grants of up to $100,000 to help battle climate change in a data-driven way</a>.</p>
+<p>It comes as no surprise that new machine learning research is therefore published at an increasingly faster rate. ArXiv, a popular public repository for research papers, even registered about 100 machine learning papers being published each day in 2018 (Figure 1). Looking at the exponential growth below, that should be plenty more in 2022.</p>
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><img src="ml_papers.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 1: Machine Learning ArXiv papers per year <span class="citation" data-cites="fournier">(<a href="#ref-fournier" role="doc-biblioref">Fournier-Viger 2019</a>)</span></figcaption>
+<div class="no-row-height column-margin column-container"><div id="ref-fournier" class="csl-entry" role="listitem">
+Fournier-Viger, Philippe. 2019. <span>‘Too Many Machine Learning Papers? | the Data Blog’</span>. <a href="https://data-mining.philippe-fournier-viger.com/too-many-machine-learning-papers/">https://data-mining.philippe-fournier-viger.com/too-many-machine-learning-papers/</a>.
+</div></div></figure>
+</div>
+<p>While not all research is directly applicable to an industry context and techniques are not always mature enough to warrant implementation, impactful papers appear almost daily. It’s up to us, the data scientists, to track them down.</p>
+<p>In this article, we discuss one of those papers that recently caught our attention. In what follows, we take you along our journey of better understanding how the algorithm works, how to implement it and what it teaches us. More specifically, this article implements the ResNet, a type of convolutional neural network, and applies it to predicting which countries won a medal at the 2022 Winter Olympics. We achieve good performance and, using explainable AI tools, are able to pinpoint why exactly our model performs the way it does.</p>
+<section id="deep-learning-for-time-series-classification" class="level1 page-columns page-full">
+<h1>Deep learning for time series classification</h1>
+<p>Problems in industry are plentiful but often involve some type of binary classification. Will this patient develop cancer? Is this email spam or ham? Will this customer purchase another product? Whether these questions can be answered frequently depends on the type of data available. In the past, companies were often only able to provide data from one point in time. Yet as information systems have become more mature, companies are keeping track of ever-growing amounts of data and are increasingly able to provide data over multiple time periods. They track machine behaviour over time, customer purchases or even employee happiness and want to predict whether a machine will fail, a customer will churn or an employee will leave.</p>
+<p>Techniques that are able to make accurate classifications, using these individual level time series as input, are therefore valuable for industry. In this regard, a (fairly) recent review paper <span class="citation" data-cites="ismail">(<a href="#ref-ismail" role="doc-biblioref">Ismail Fawaz et al. 2019</a>)</span> caught our attention. As the field of time series classification has gained more traction over the years, a myriad of algorithms has been developed to solve the same problem. Through extensive testing, these authors are able to single out which perform best and under which circumstances. Among them is the residual network (ResNet), a convolutional neural network originally used for image classification.</p>
+<div class="no-row-height column-margin column-container"><div id="ref-ismail" class="csl-entry" role="listitem">
+Ismail Fawaz, Hassan, Germain Forestier, Jonathan Weber, Lhassane Idoumghar, and Pierre-Alain Muller. 2019. <span>‘Deep Learning for Time Series Classification: A Review’</span>. <em>Data Mining and Knowledge Discovery</em> 33 (4): 917–63.
+</div></div></section>
+<section id="how-it-works-convolutional-neural-networks-101" class="level1 page-columns page-full">
+<h1>How it works: Convolutional Neural Networks 101</h1>
+<p>At its core, a residual network (ResNet) is a convolutional neural network (CNN). These types of neural networks have already been successfully implemented in image recognition and natural language processing. While this branch of neural networks is therefore most well-known for separating cats from dogs or summarising reviews on TripAdvisor, it also has its applications to time series classification.</p>
+<p>The CNN gets its strength from repeatedly sliding a ‘filter’ over a time series (Figure 2), taking some weighted average of the values in its range, and thereby producing a new time series. Different filters will extract different features (such as trends) and applying a filter to an already filtered time series allows for detection of even the best hidden signals. The weights for each of the observations in a filter is determined by training the CNN. They are optimized for classification of the time series at hand.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="filtering.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 2: Illustration of the filtering process</figcaption>
+</figure>
+</div>
+<section id="the-residual-network" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="the-residual-network">The Residual Network</h2>
+<p>The residual network (ResNet) is a special type of CNN that differs in its architecture (or sequence of layers; Figure 3). While we have done our research on the latter, the ResNet requires special attention as it contains some modifications. More specifically, a residual network <span class="citation" data-cites="he">Wang, Yan, and Oates (<a href="#ref-wang" role="doc-biblioref">2017</a>)</span> contains three blocks of each three convolutional layers (Figure 3). The first block contains three layers of 64 filters, the last two blocks contain 128 filters per layer. After each block of three convolutional layers, the input to that block (i.e., the raw data or the output of the previous block) is added to the output of the third layer, using a so-called ‘shortcut connection’. In addition, after each convolutional layer, batch normalisation is executed. In the last convolutional layer of each block, the input from the shortcut connection is also batch normalised independently before being added. Lastly, after each layer, each of the elements is subjected to a ReLU activation function before being passed on to the next layer.</p>
+<div class="no-row-height column-margin column-container"><div id="ref-wang" class="csl-entry" role="listitem">
+Wang, Zhiguang, Weizhong Yan, and Tim Oates. 2017. <span>‘Time Series Classification from Scratch with Deep Neural Networks: A Strong Baseline’</span>. In <em>2017 International Joint Conference on Neural Networks (IJCNN)</em>, 1578–85. IEEE.
+</div></div><div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="architecture.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 3: Architecture of a Residual Network</figcaption>
+</figure>
+</div>
+<p>After three blocks of convolutional layers, the output of the third block is put through a global average pooling (GAP) layer: Each time series is averaged and can now be represented by a single node. In a final stage, each of these nodes is fully connected to the output layer, i.e., the nodes with the class indication. A sigmoid activation function allows for the prediction of a probability for belonging to each of the classes.</p>
+</section>
+</section>
+<section id="how-to-implement-it-application-to-the-2022-olympic-winter-games" class="level1">
+<h1>How to implement it: Application to the 2022 Olympic Winter Games</h1>
+<p>Now that we’ve seen the theoretical basis behind the ResNet, it’s time for an application! While many machine learning models are implemented in well-known Python libraries, the ResNet for time series classification is not. No need to panic! We will not have to optimise our loss functions by hand, we can just rely on a deep learning framework, such as TensorFlow or PyTorch. To get a feel for the power of the ResNet, we will now try to predict whether a country has won a medal at the Olympic Winter Games in 2022 just by looking at their GDP from 1990 to 2018. The code behind our results can be found on <a href="https://github.com/TimCosemans/explainable-cnns/tree/main">GitHub</a>. For now, we will just focus on the results and what they mean. This section is somewhat technical, you can skip it if you want and just move on to the interpretation of the results.</p>
+<p>The data we use was collected from the web (https://olympics.com/en/olympic-games/beijing-2022/medals and https://www.kaggle.com/datasets/nitishabharathi/gdp-per-capita-all-countries) and put into files that can easily be read by Python. We only include countries that participated in the 2022 Olympic Winter Games. In addition, the ResNet requires full time series without missing values. For the purpose of this example, we therefore choose to delete 18 cases with missing values (although there might be better strategies to deal with the missingness). Our data now consists of 71 countries, 50 of which will be used to train the model. The remaining 21 make up the test set, i.e., the unseen observations on which our final model will be evaluated.</p>
+<p>The model we built matches the architecture from Figure 3 exactly. Yet however good it may be, without some sense-making it remains a black box. Let’s first start by inspecting its performance. Throughout the epochs (i.e., passes through the entire data set), the model should become better at matching the data. Figure 4 shows that both the training and test loss decline throughout the epochs. After about 350 epochs, our training stops since training loss has not decreased for several epochs. We also plot the test loss, yet do not make decisions based on this quantity. As expected, the test loss is always slightly higher than the training loss. Both training and test accuracy rapidly rise after the first 50 epochs and then remain almost constant at 80-85%. The AUC follows a similar pattern and remains constant at around 0.9. Overall, the model performs well. Since the accuracy of a classification problem is highly dependent on the chosen threshold, we choose our best model based on the training AUC. This is maximal around 210 epochs.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="performance.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 4: Performance of the model in terms of loss, accuracy, and AUC for both the test and training set</figcaption>
+</figure>
+</div>
+<p>For the best model, we subsequently plot the ROC curve (Figure 5). With an AUC of 0.91 it performs significantly better than a random guess (which would have an AUC of 0.5). We choose the best threshold as the point on the curve that is closest to the upper left corner in terms of Euclidean distance, where the true positive rate is 1 and the false positive rate is 0. This point is indicated with a red dot. At this point, if we classify a country as a medal winner only if its predicted probability is above 0.54, we are able to achieve a false positive rate of 0.09 and a true positive rate of 0.76.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="roc.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 5: ROC curve for the model with the best training AUC</figcaption>
+</figure>
+</div>
+<section id="what-it-means-explaining-the-previous-paragraph" class="level2">
+<h2 class="anchored" data-anchor-id="what-it-means-explaining-the-previous-paragraph">What it means: Explaining the previous paragraph</h2>
+<p>The discussion above was very technical and still does not give us much insight into the power of the ResNet. The model we chose, based on the results from the training set, will only classify a country as a medal winner if the predicted probability it wins one is larger than 54%. To present an unbiased estimate of this model’s performance, we calculate some statistics on the test set. Our model achieves an overall precision of about 85% and a recall of about 87%. This means that 85% of all predicted medal winners will actually win one and we correctly predict 87% of all true medal winners. Given that our model only uses GDP data (ending three years before the 2022 Olympic Winter Games), this is a rather good performance!</p>
+<p>Yet you might be wondering how we can achieve such good performance with the data at hand. As with many deep learning models, our model remains a black box. To find out what features of the time series add to its prediction, we can use a class activation map. This tool allows us to determine the importance of each temporal element for the classification of the time series. Our class activation map (Figure 6) shows the importance of the GDP in each year for the probability of that country being a medal winner. It shows that especially periods of high growth contribute to a higher probability of winning a medal at the 2022 Winter Olympics. Intuitively this makes sense: Wealthier countries have more funds to invest in the development of athletic capabilities and are therefore more likely to win a medal.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="cam.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 6: Class activation map for the test set (high values are indicated by a deep red, low values by a deep blue)</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="conclusion" class="level1">
+<h1>Conclusion</h1>
+<p>Data science is an evolving field and as a data scientists we have to stay in the loop with regards to its latest innovations. This article gives some insight into that process. From researching the foundations of the ResNet to building the neural network and interpreting its results. By presenting the ResNets good performance and interpretable results, we hope to have convinced you of the potential of neural networks for the classification of time series. Happy programming!</p>
+
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<ol start="3" type="a">
+<li>Tim Cosemans, 2025 - <a href="disclaimer">Disclaimer</a> - Based on chrisvoncsefalvay.com</li>
+</ol>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
