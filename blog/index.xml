@@ -6,15 +6,15 @@
       version="2.0">
 <channel>
 <title>Tim Cosemans</title>
-<link>https://TimCosemans.github.io/statistically-speaking-be/blog/</link>
-<atom:link href="https://TimCosemans.github.io/statistically-speaking-be/blog/index.xml" rel="self" type="application/rss+xml"/>
+<link>https://timcosemans.be/blog/</link>
+<atom:link href="https://timcosemans.be/blog/index.xml" rel="self" type="application/rss+xml"/>
 <description>Tim is a data scientist working at the intersection of AI, business and education.</description>
 <generator>quarto-1.8.27</generator>
 <lastBuildDate>Sun, 24 Aug 2025 00:00:00 GMT</lastBuildDate>
 <item>
   <title>AI-nuchterheid</title>
   <dc:creator>Tim Cosemans</dc:creator>
-  <link>https://TimCosemans.github.io/statistically-speaking-be/blog/ai_nuchterheid/</link>
+  <link>https://timcosemans.be/blog/ai_nuchterheid/</link>
   <description><![CDATA[ 
 
 
@@ -43,14 +43,14 @@
  ]]></description>
   <category>data ethics</category>
   <category>data science</category>
-  <guid>https://TimCosemans.github.io/statistically-speaking-be/blog/ai_nuchterheid/</guid>
+  <guid>https://timcosemans.be/blog/ai_nuchterheid/</guid>
   <pubDate>Sun, 24 Aug 2025 00:00:00 GMT</pubDate>
-  <media:content url="https://TimCosemans.github.io/statistically-speaking-be/blog/ai_nuchterheid/header.jpg" medium="image" type="image/jpeg"/>
+  <media:content url="https://timcosemans.be/blog/ai_nuchterheid/header.jpg" medium="image" type="image/jpeg"/>
 </item>
 <item>
   <title>A note on panel data methods</title>
   <dc:creator>Tim Cosemans</dc:creator>
-  <link>https://TimCosemans.github.io/statistically-speaking-be/blog/panel_data_note/</link>
+  <link>https://timcosemans.be/blog/panel_data_note/</link>
   <description><![CDATA[ 
 
 
@@ -130,14 +130,14 @@ Wooldridge, Jeffrey. 2016. <em>Introductory Econometrics</em>. Cengage AU.
  ]]></description>
   <category>data science</category>
   <category>econometrics</category>
-  <guid>https://TimCosemans.github.io/statistically-speaking-be/blog/panel_data_note/</guid>
+  <guid>https://timcosemans.be/blog/panel_data_note/</guid>
   <pubDate>Sun, 06 Apr 2025 00:00:00 GMT</pubDate>
-  <media:content url="https://TimCosemans.github.io/statistically-speaking-be/blog/panel_data_note/header.jpg" medium="image" type="image/jpeg"/>
+  <media:content url="https://timcosemans.be/blog/panel_data_note/header.jpg" medium="image" type="image/jpeg"/>
 </item>
 <item>
   <title>The struggles of a data marketer</title>
   <dc:creator>Tim Cosemans</dc:creator>
-  <link>https://TimCosemans.github.io/statistically-speaking-be/blog/struggles_data_marketeer/</link>
+  <link>https://timcosemans.be/blog/struggles_data_marketeer/</link>
   <description><![CDATA[ 
 
 
@@ -153,7 +153,7 @@ Böringer, J., A. Dierks, I. Huber, and D. Spillecke. 2022. <span>‘Insights to
 <p>Data marketing relies on access to all relevant data in order to find answers to business questions. Data access comes with its own barriers however (Figure 1). Often marketeers find themselves unable to integrate all data due to insufficient tools or technology. The files coming from your company database might not be compatible with your preferred analytics software or they might be too large to handle on your personal computer. Moving all your data to a cloud provider, such as Microsoft, Google or Amazon can be a great help in such cases. In choosing such a provider, it is important to consider what needs you need fulfilled. Want to make nice looking dashboards in PowerBI? Microsoft Azure might be the way to go. Want to easily access your data from Google Analytics? Think about Google Cloud Platform as your provider.</p>
 <div class="quarto-figure quarto-figure-center page-columns page-full">
 <figure class="figure page-columns page-full">
-<p><img src="https://TimCosemans.github.io/statistically-speaking-be/blog/struggles_data_marketeer/data_barriers.png" class="img-fluid figure-img"></p>
+<p><img src="https://timcosemans.be/blog/struggles_data_marketeer/data_barriers.png" class="img-fluid figure-img"></p>
 <figcaption>Figure 1: Main barriers to data access <span class="citation" data-cites="cmocouncil">(<span>‘The High-Velocity Data Marketer’</span> 2022)</span></figcaption>
 <div class="no-row-height column-margin column-container"></div></figure>
 </div>
@@ -171,7 +171,7 @@ Böringer, J., A. Dierks, I. Huber, and D. Spillecke. 2022. <span>‘Insights to
 <p>The struggles of a data marketer are real. And as data becomes more ubiquitous and AI more pervasive, they are not likely to become any less prevalent.</p>
 <div class="quarto-figure quarto-figure-center page-columns page-full">
 <figure class="figure page-columns page-full">
-<p><img src="https://TimCosemans.github.io/statistically-speaking-be/blog/struggles_data_marketeer/data_challenges.png" class="img-fluid figure-img"></p>
+<p><img src="https://timcosemans.be/blog/struggles_data_marketeer/data_challenges.png" class="img-fluid figure-img"></p>
 <figcaption>Figure 2: Data capabilities still out of reach for marketers <span class="citation" data-cites="cmocouncil">(<span>‘The High-Velocity Data Marketer’</span> 2022)</span></figcaption>
 <div class="no-row-height column-margin column-container"><div id="ref-cmocouncil" class="csl-entry">
 <span>‘The High-Velocity Data Marketer’</span>. 2022. CMO Council. <a href="https://www.cmocouncil.org/thought-leadership/reports/the-high-velocity-data-marketer">https://www.cmocouncil.org/thought-leadership/reports/the-high-velocity-data-marketer</a>.
@@ -185,14 +185,14 @@ Böringer, J., A. Dierks, I. Huber, and D. Spillecke. 2022. <span>‘Insights to
   <category>data strategy</category>
   <category>data science</category>
   <category>marketing analytics</category>
-  <guid>https://TimCosemans.github.io/statistically-speaking-be/blog/struggles_data_marketeer/</guid>
+  <guid>https://timcosemans.be/blog/struggles_data_marketeer/</guid>
   <pubDate>Tue, 07 Feb 2023 00:00:00 GMT</pubDate>
-  <media:content url="https://TimCosemans.github.io/statistically-speaking-be/blog/struggles_data_marketeer/header.webp" medium="image" type="image/webp"/>
+  <media:content url="https://timcosemans.be/blog/struggles_data_marketeer/header.webp" medium="image" type="image/webp"/>
 </item>
 <item>
   <title>Explainable convolutional neural networks for time series classification</title>
   <dc:creator>Tim Cosemans</dc:creator>
-  <link>https://TimCosemans.github.io/statistically-speaking-be/blog/explainable_cnns/</link>
+  <link>https://timcosemans.be/blog/explainable_cnns/</link>
   <description><![CDATA[ 
 
 
@@ -202,7 +202,7 @@ Böringer, J., A. Dierks, I. Huber, and D. Spillecke. 2022. <span>‘Insights to
 <p>It comes as no surprise that new machine learning research is therefore published at an increasingly faster rate. ArXiv, a popular public repository for research papers, even registered about 100 machine learning papers being published each day in 2018 (Figure 1). Looking at the exponential growth below, that should be plenty more in 2022.</p>
 <div class="quarto-figure quarto-figure-center page-columns page-full">
 <figure class="figure page-columns page-full">
-<p><img src="https://TimCosemans.github.io/statistically-speaking-be/blog/explainable_cnns/ml_papers.png" class="img-fluid figure-img"></p>
+<p><img src="https://timcosemans.be/blog/explainable_cnns/ml_papers.png" class="img-fluid figure-img"></p>
 <figcaption>Figure 1: Machine Learning ArXiv papers per year <span class="citation" data-cites="fournier">(Fournier-Viger 2019)</span></figcaption>
 <div class="no-row-height column-margin column-container"><div id="ref-fournier" class="csl-entry">
 Fournier-Viger, Philippe. 2019. <span>‘Too Many Machine Learning Papers? | the Data Blog’</span>. <a href="https://data-mining.philippe-fournier-viger.com/too-many-machine-learning-papers/">https://data-mining.philippe-fournier-viger.com/too-many-machine-learning-papers/</a>.
@@ -223,7 +223,7 @@ Ismail Fawaz, Hassan, Germain Forestier, Jonathan Weber, Lhassane Idoumghar, and
 <p>The CNN gets its strength from repeatedly sliding a ‘filter’ over a time series (Figure 2), taking some weighted average of the values in its range, and thereby producing a new time series. Different filters will extract different features (such as trends) and applying a filter to an already filtered time series allows for detection of even the best hidden signals. The weights for each of the observations in a filter is determined by training the CNN. They are optimized for classification of the time series at hand.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://TimCosemans.github.io/statistically-speaking-be/blog/explainable_cnns/filtering.png" class="img-fluid figure-img"></p>
+<p><img src="https://timcosemans.be/blog/explainable_cnns/filtering.png" class="img-fluid figure-img"></p>
 <figcaption>Figure 2: Illustration of the filtering process</figcaption>
 </figure>
 </div>
@@ -234,7 +234,7 @@ Ismail Fawaz, Hassan, Germain Forestier, Jonathan Weber, Lhassane Idoumghar, and
 Wang, Zhiguang, Weizhong Yan, and Tim Oates. 2017. <span>‘Time Series Classification from Scratch with Deep Neural Networks: A Strong Baseline’</span>. In <em>2017 International Joint Conference on Neural Networks (IJCNN)</em>, 1578–85. IEEE.
 </div></div><div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://TimCosemans.github.io/statistically-speaking-be/blog/explainable_cnns/architecture.png" class="img-fluid figure-img"></p>
+<p><img src="https://timcosemans.be/blog/explainable_cnns/architecture.png" class="img-fluid figure-img"></p>
 <figcaption>Figure 3: Architecture of a Residual Network</figcaption>
 </figure>
 </div>
@@ -248,14 +248,14 @@ Wang, Zhiguang, Weizhong Yan, and Tim Oates. 2017. <span>‘Time Series Classifi
 <p>The model we built matches the architecture from Figure 3 exactly. Yet however good it may be, without some sense-making it remains a black box. Let’s first start by inspecting its performance. Throughout the epochs (i.e., passes through the entire data set), the model should become better at matching the data. Figure 4 shows that both the training and test loss decline throughout the epochs. After about 350 epochs, our training stops since training loss has not decreased for several epochs. We also plot the test loss, yet do not make decisions based on this quantity. As expected, the test loss is always slightly higher than the training loss. Both training and test accuracy rapidly rise after the first 50 epochs and then remain almost constant at 80-85%. The AUC follows a similar pattern and remains constant at around 0.9. Overall, the model performs well. Since the accuracy of a classification problem is highly dependent on the chosen threshold, we choose our best model based on the training AUC. This is maximal around 210 epochs.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://TimCosemans.github.io/statistically-speaking-be/blog/explainable_cnns/performance.png" class="img-fluid figure-img"></p>
+<p><img src="https://timcosemans.be/blog/explainable_cnns/performance.png" class="img-fluid figure-img"></p>
 <figcaption>Figure 4: Performance of the model in terms of loss, accuracy, and AUC for both the test and training set</figcaption>
 </figure>
 </div>
 <p>For the best model, we subsequently plot the ROC curve (Figure 5). With an AUC of 0.91 it performs significantly better than a random guess (which would have an AUC of 0.5). We choose the best threshold as the point on the curve that is closest to the upper left corner in terms of Euclidean distance, where the true positive rate is 1 and the false positive rate is 0. This point is indicated with a red dot. At this point, if we classify a country as a medal winner only if its predicted probability is above 0.54, we are able to achieve a false positive rate of 0.09 and a true positive rate of 0.76.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://TimCosemans.github.io/statistically-speaking-be/blog/explainable_cnns/roc.png" class="img-fluid figure-img"></p>
+<p><img src="https://timcosemans.be/blog/explainable_cnns/roc.png" class="img-fluid figure-img"></p>
 <figcaption>Figure 5: ROC curve for the model with the best training AUC</figcaption>
 </figure>
 </div>
@@ -265,7 +265,7 @@ Wang, Zhiguang, Weizhong Yan, and Tim Oates. 2017. <span>‘Time Series Classifi
 <p>Yet you might be wondering how we can achieve such good performance with the data at hand. As with many deep learning models, our model remains a black box. To find out what features of the time series add to its prediction, we can use a class activation map. This tool allows us to determine the importance of each temporal element for the classification of the time series. Our class activation map (Figure 6) shows the importance of the GDP in each year for the probability of that country being a medal winner. It shows that especially periods of high growth contribute to a higher probability of winning a medal at the 2022 Winter Olympics. Intuitively this makes sense: Wealthier countries have more funds to invest in the development of athletic capabilities and are therefore more likely to win a medal.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://TimCosemans.github.io/statistically-speaking-be/blog/explainable_cnns/cam.png" class="img-fluid figure-img"></p>
+<p><img src="https://timcosemans.be/blog/explainable_cnns/cam.png" class="img-fluid figure-img"></p>
 <figcaption>Figure 6: Class activation map for the test set (high values are indicated by a deep red, low values by a deep blue)</figcaption>
 </figure>
 </div>
@@ -283,9 +283,9 @@ Wang, Zhiguang, Weizhong Yan, and Tim Oates. 2017. <span>‘Time Series Classifi
   <category>explainable ai</category>
   <category>data science</category>
   <category>neural networks</category>
-  <guid>https://TimCosemans.github.io/statistically-speaking-be/blog/explainable_cnns/</guid>
+  <guid>https://timcosemans.be/blog/explainable_cnns/</guid>
   <pubDate>Tue, 07 Jun 2022 00:00:00 GMT</pubDate>
-  <media:content url="https://TimCosemans.github.io/statistically-speaking-be/blog/explainable_cnns/header.jpg" medium="image" type="image/jpeg"/>
+  <media:content url="https://timcosemans.be/blog/explainable_cnns/header.jpg" medium="image" type="image/jpeg"/>
 </item>
 </channel>
 </rss>

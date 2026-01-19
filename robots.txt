@@ -1,1 +1,1 @@
-Sitemap: https://TimCosemans.github.io/statistically-speaking-be/sitemap.xml
+Sitemap: https://timcosemans.be/sitemap.xml
