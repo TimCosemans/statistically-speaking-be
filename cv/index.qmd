@@ -4,6 +4,13 @@ title: Curriculum Vitae
 
 # Work Experience 
 
+**Teaching Assistant | Hasselt University**
+
+*02/2026 – Present*
+
+- Organizing practical sessions for the course 'Explorative and Descriptive Data Analysis'
+- Grading assignments and exams
+
 **Data Scientist & Engineer | Smartschool**
 
 *10/2023 – Present*
@@ -16,7 +23,7 @@ title: Curriculum Vitae
 
 *Additional Activities:*
 
-- **Data Team Strategy:** Organizing workshops, conducting AI maturity assessments, developing roadmaps and planning.
+- **Data Team Lead:** Organizing workshops, conducting AI maturity assessments, developing roadmaps and planning.
 - Aligning AI and data initiatives with the company's core values and mission.
 
 **Affiliate Researcher | Eindhoven University of Technology**
@@ -63,9 +70,16 @@ title: Curriculum Vitae
 - **Internship Supervisions | Hasselt University (2023):** Guided graduation projects in marketing strategy & value proposition management.
 - **Thesis Supervision | Thomas More University College (2023):** Bachelor thesis on causal machine learning.
 - **Thesis Supervision | Eindhoven University of Technology (2021):** Innovation management & marketing analytics projects.
-- **Courses Taught:** Multivariate Statistics, Statistics for Business Administration, Mathematics for Business Administration.
+- **Courses Taught:** Explorative and Descriptive Data Analysis (2026), Multivariate Statistics (2021), Statistics for Business Administration (2019), Mathematics for Business Administration (2016-2019).
 
 # Education
+
+**Creative Writing | Academy for Art Genk**
+
+*09/2024 – Present*
+
+- Content: Writing techniques, language & style, story structure, book discussions etc. 
+- Personal focus on prose
 
 **PhD in Industrial Engineering – Marketing Analytics | Eindhoven University of Technology**
 
